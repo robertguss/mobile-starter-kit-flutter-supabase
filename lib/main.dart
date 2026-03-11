@@ -36,15 +36,13 @@ Future<void> main() async {
       await runZonedGuarded(
         () async {
           final supabaseClient = await AppSupabaseClient.initialize(env);
-          final powerSyncDatabase = await AppPowerSyncClient().open(
+          final powerSyncClient = AppPowerSyncClient();
+          final powerSyncDatabase = await powerSyncClient.open();
+          final sessionManager = buildSessionManager(
+            powerSyncClient: powerSyncClient,
+            database: powerSyncDatabase,
             supabaseClient: supabaseClient,
             powerSyncUrl: env.powerSyncUrl,
-          );
-          final sessionManager = SessionManager(
-            onTeardown: () async {
-              await powerSyncDatabase.disconnectAndClear();
-              await supabaseClient.auth.signOut();
-            },
           );
           final authRepository = SupabaseAuthRepository(
             supabaseClient: supabaseClient,

@@ -19,18 +19,11 @@ void main() {
 
   group('AppPowerSyncClient', () {
     test(
-      'opens the database, initializes it, and connects with the connector',
+      'opens the database and initializes it',
       () async {
       final database = _MockPowerSyncDatabase();
-      final supabaseClient = _MockSupabaseClient();
-      final connector = _FakePowerSyncConnector();
 
       when(database.initialize).thenAnswer((_) async {});
-      when(
-        () => database.connect(
-          connector: any(named: 'connector'),
-        ),
-      ).thenAnswer((_) async {});
 
       final client = AppPowerSyncClient(
         databasePathProvider: () async => '/tmp/powersync.db',
@@ -39,6 +32,29 @@ void main() {
           expect(path, '/tmp/powersync.db');
           return database;
         },
+      );
+
+      final openedDatabase = await client.open();
+
+      expect(openedDatabase, same(database));
+      verify(database.initialize).called(1);
+      verifyNoMoreInteractions(database);
+      },
+    );
+
+    test('connect uses the Supabase-backed connector', () async {
+      final database = _MockPowerSyncDatabase();
+      final supabaseClient = _MockSupabaseClient();
+      final connector = _FakePowerSyncConnector();
+
+      when(
+        () => database.connect(
+          connector: any(named: 'connector'),
+        ),
+      ).thenAnswer((_) async {});
+
+      final client = AppPowerSyncClient(
+        databasePathProvider: () async => '/tmp/powersync.db',
         connectorFactory: ({required supabaseClient, required powerSyncUrl}) {
           expect(supabaseClient, same(supabaseClient));
           expect(powerSyncUrl, 'https://powersync.example.com');
@@ -46,21 +62,19 @@ void main() {
         },
       );
 
-      final openedDatabase = await client.open(
+      await client.connect(
+        database: database,
         supabaseClient: supabaseClient,
         powerSyncUrl: 'https://powersync.example.com',
       );
 
-      expect(openedDatabase, same(database));
-      verifyInOrder([
-        database.initialize,
+      verify(
         () => database.connect(
           connector: connector,
         ),
-      ]);
+      ).called(1);
       verifyNoMoreInteractions(database);
-      },
-    );
+    });
 
     test('clear disconnects and removes local PowerSync data', () async {
       final database = _MockPowerSyncDatabase();

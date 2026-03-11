@@ -534,11 +534,11 @@ schema defined, connector tested.
      - `signOut` → delegates to `SessionManager.signOut()` (NOT directly to
        SDKs)
      - `authStateChanges` → `supabase.auth.onAuthStateChange` mapped to User
-   - [ ] `SessionManager.onSignIn(userId)` called after successful auth:
+   - [x] `SessionManager.onSignIn(userId)` called after successful auth:
      - `Purchases.logIn(userId)` — RevenueCat (MUST happen before any purchase)
      - `OneSignal.login(userId)` — push notification targeting
      - `PowerSync.connect()` — start sync with valid JWT
-   - [ ] `SessionManager.signOut()` orchestrates full cleanup:
+   - [x] `SessionManager.signOut()` orchestrates full cleanup:
      - `PowerSync.disconnectAndClear()` — clear local data
      - `Purchases.logOut()` — RevenueCat
      - `OneSignal.logout()` — push notifications

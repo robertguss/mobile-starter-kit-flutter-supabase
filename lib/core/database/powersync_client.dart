@@ -30,10 +30,7 @@ class AppPowerSyncClient {
   final PowerSyncDatabaseFactory _databaseFactory;
   final PowerSyncConnectorFactory _connectorFactory;
 
-  Future<PowerSyncDatabase> open({
-    required SupabaseClient supabaseClient,
-    required String powerSyncUrl,
-  }) async {
+  Future<PowerSyncDatabase> open() async {
     final databasePath = await _databasePathProvider();
     final database = _databaseFactory(
       schema: appPowerSyncSchema,
@@ -41,14 +38,20 @@ class AppPowerSyncClient {
     );
 
     await database.initialize();
+    return database;
+  }
+
+  Future<void> connect({
+    required PowerSyncDatabase database,
+    required SupabaseClient supabaseClient,
+    required String powerSyncUrl,
+  }) async {
     await database.connect(
       connector: _connectorFactory(
         supabaseClient: supabaseClient,
         powerSyncUrl: powerSyncUrl,
       ),
     );
-
-    return database;
   }
 
   Future<void> clear(PowerSyncDatabase database) {
