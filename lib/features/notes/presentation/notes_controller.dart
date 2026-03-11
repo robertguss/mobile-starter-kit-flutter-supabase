@@ -6,6 +6,11 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'notes_controller.g.dart';
 
+@riverpod
+Future<NoteModel> noteDetail(Ref ref, String noteId) {
+  return ref.watch(noteRepositoryProvider).getNote(noteId);
+}
+
 @Riverpod(keepAlive: true)
 class NotesController extends _$NotesController {
   StreamSubscription<List<NoteModel>>? _subscription;

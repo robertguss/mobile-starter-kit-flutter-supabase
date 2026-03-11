@@ -616,7 +616,7 @@ indicators, sync status.
          with `AsyncValue`
    - [x] `lib/features/notes/presentation/notes_list_screen.dart` — Material 3
          list
-   - [ ] `lib/features/notes/presentation/note_detail_screen.dart` — view/edit
+   - [x] `lib/features/notes/presentation/note_detail_screen.dart` — view/edit
          with auto-save
    - [x] `lib/features/notes/presentation/widgets/note_card.dart` — list item
          widget

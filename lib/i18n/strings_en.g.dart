@@ -125,6 +125,12 @@ class TranslationsNotesEn {
 	/// en: 'New note'
 	String get create => 'New note';
 
+	/// en: 'Title'
+	String get titleLabel => 'Title';
+
+	/// en: 'Body'
+	String get bodyLabel => 'Body';
+
 	/// en: 'Online'
 	String get onlineStatus => 'Online';
 
@@ -202,6 +208,8 @@ extension on Translations {
 			'notes.emptyState' => 'No notes yet.',
 			'notes.newNoteTitle' => 'Untitled note',
 			'notes.create' => 'New note',
+			'notes.titleLabel' => 'Title',
+			'notes.bodyLabel' => 'Body',
 			'notes.onlineStatus' => 'Online',
 			'notes.offlineStatus' => 'Offline',
 			'settings.title' => 'Settings',

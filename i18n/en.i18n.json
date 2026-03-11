@@ -21,6 +21,8 @@
     "emptyState": "No notes yet.",
     "newNoteTitle": "Untitled note",
     "create": "New note",
+    "titleLabel": "Title",
+    "bodyLabel": "Body",
     "onlineStatus": "Online",
     "offlineStatus": "Offline"
   },
