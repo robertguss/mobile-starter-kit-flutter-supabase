@@ -49,9 +49,9 @@ You must follow this exact sequence when building new data-driven features:
 
 ## 5. UI & Styling
 
-- **Design System:** Use `shadcn_ui` components (e.g., `ShadButton`,
-  `ShadInput`) for all UI elements. Avoid raw Flutter Material widgets if a
-  `shadcn` equivalent exists.
+- **Design System:** Use Flutter Material 3 with the shared app theme in
+  `lib/core/theme/`. Prefer theme-driven styling and reusable app widgets over
+  one-off styling.
 - **Assets:** NEVER use hardcoded string paths for assets. Always use the
   generated `Assets` class from `flutter_gen` (e.g.,
   `Assets.images.logo.image()`).

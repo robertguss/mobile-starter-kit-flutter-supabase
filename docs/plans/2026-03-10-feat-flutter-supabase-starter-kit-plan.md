@@ -326,9 +326,9 @@ Future<void> main() async {
 
 **Tasks:**
 
-- [ ] Run `flutter create --org com.example flutter_supabase_starter` (or
+- [x] Run `flutter create --org com.example flutter_supabase_starter` (or
       similar)
-- [ ] Add all dependencies to `pubspec.yaml`:
+- [x] Add all dependencies to `pubspec.yaml`:
   - Core: `flutter_riverpod`, `riverpod_annotation`, `riverpod_generator`,
     `go_router`
   - Data: `supabase_flutter`, `powersync` (latest with Rust client)
@@ -337,26 +337,26 @@ Future<void> main() async {
   - Observability: `sentry_flutter`, `posthog_flutter`
   - i18n/Assets: `slang`, `slang_flutter`, `flutter_gen`
   - Dev: `build_runner`, `riverpod_lint`, `very_good_analysis`, `mocktail`
-- [ ] Configure `analysis_options.yaml` with `very_good_analysis` and
+- [x] Configure `analysis_options.yaml` with `very_good_analysis` and
       `riverpod_lint`
-- [ ] Initialize Supabase CLI: `supabase init`
-- [ ] Create `config_dev.json`, `config_staging.json`, `config_prod.json` with
+- [x] Initialize Supabase CLI: `supabase init`
+- [x] Create `config_dev.json`, `config_staging.json`, `config_prod.json` with
       placeholder keys
-- [ ] Set iOS minimum deployment target to 13.0
-- [ ] Set Android compileSdkVersion to 34
-- [ ] Change Android `MainActivity` to extend `FlutterFragmentActivity`
-- [ ] Set Android `launchMode` to `singleTop` in AndroidManifest.xml
-- [ ] Configure PostHog `AUTO_INIT=false` in AndroidManifest.xml and Info.plist
-- [ ] Create `.gitignore` with Flutter defaults + `config_prod.json` +
+- [x] Set iOS minimum deployment target to 13.0
+- [x] Set Android compileSdkVersion to 34
+- [x] Change Android `MainActivity` to extend `FlutterFragmentActivity`
+- [x] Set Android `launchMode` to `singleTop` in AndroidManifest.xml
+- [x] Configure PostHog `AUTO_INIT=false` in AndroidManifest.xml and Info.plist
+- [x] Create `.gitignore` with Flutter defaults + `config_prod.json` +
       `config_staging.json`
-- [ ] Create `.env.example` listing all required environment variable names (no
+- [x] Create `.env.example` listing all required environment variable names (no
       values)
-- [ ] **Update AGENTS.md** — replace `shadcn_ui` references with Material 3 +
+- [x] **Update AGENTS.md** — replace `shadcn_ui` references with Material 3 +
       custom theme (do this NOW, not Phase 7, so all agents use correct UI
       system)
-- [ ] Add `flutter_secure_storage` to dependencies (for secure JWT storage —
+- [x] Add `flutter_secure_storage` to dependencies (for secure JWT storage —
       SEC-2)
-- [ ] Verify: `flutter analyze` passes with zero warnings
+- [x] Verify: `flutter analyze` passes with zero warnings
 
 **Success criteria:** `flutter analyze` and `flutter test` both pass (no tests
 yet, just no errors).
@@ -368,54 +368,54 @@ all working.
 
 **Tasks:**
 
-- [ ] Implement `lib/core/env/env.dart` — load `--dart-define-from-file` values
-- [ ] Implement `lib/core/observability/sentry_config.dart` — Sentry
+- [x] Implement `lib/core/env/env.dart` — load `--dart-define-from-file` values
+- [x] Implement `lib/core/observability/sentry_config.dart` — Sentry
       initialization
-- [ ] Implement `lib/core/observability/posthog_config.dart` — PostHog
+- [x] Implement `lib/core/observability/posthog_config.dart` — PostHog
       initialization
-- [ ] Implement `lib/core/observability/provider_observer.dart` — Riverpod
+- [x] Implement `lib/core/observability/provider_observer.dart` — Riverpod
       ProviderObserver that sends unhandled exceptions to Sentry
-- [ ] Implement `lib/core/theme/app_colors.dart` — centralized Material 3 color
+- [x] Implement `lib/core/theme/app_colors.dart` — centralized Material 3 color
       palette (light + dark)
-- [ ] Implement `lib/core/theme/app_typography.dart` — typography scale
-- [ ] Implement `lib/core/theme/app_theme.dart` — `ThemeData` using
+- [x] Implement `lib/core/theme/app_typography.dart` — typography scale
+- [x] Implement `lib/core/theme/app_theme.dart` — `ThemeData` using
       `colorSchemeSeed` with app_colors
-- [ ] Configure `flutter_gen` in `pubspec.yaml` — assets directory, output
-- [ ] Configure `slang` — create `i18n/strings.i18n.json` with initial strings
-- [ ] Configure `build.yaml` for multi-generator performance:
+- [x] Configure `flutter_gen` in `pubspec.yaml` — assets directory, output
+- [x] Configure `slang` — create `i18n/strings.i18n.json` with initial strings
+- [x] Configure `build.yaml` for multi-generator performance:
   - Scope `riverpod_generator` to `lib/features/**/presentation/`
   - Scope `flutter_gen_runner` to assets
   - Scope `slang_build_runner` to `i18n/`
   - Set `runs_before` ordering
-- [ ] Implement `lib/core/router/app_router.dart` — GoRouter with:
+- [x] Implement `lib/core/router/app_router.dart` — GoRouter with:
   - Auth redirect using `refreshListenable` pattern (listens to Supabase auth
     state)
   - Routes: `/login`, `/otp-verify`, `/notes` (home), `/note/:id`, `/settings`,
     `/paywall`
   - Global redirect: unauthenticated → `/login`, authenticated → `/notes`
-- [ ] Implement `lib/core/session/session_manager.dart` — Mediator pattern:
+- [x] Implement `lib/core/session/session_manager.dart` — Mediator pattern:
   - Orchestrates sign-out across all SDKs (PowerSync, RevenueCat, OneSignal,
     Supabase)
   - Decouples auth repository from other SDKs (architecture review finding #2)
   - Single point of coordination for cross-feature session lifecycle
-- [ ] Implement `lib/core/widgets/async_value_widget.dart` — reusable widget:
+- [x] Implement `lib/core/widgets/async_value_widget.dart` — reusable widget:
   - Handles `AsyncValue` states (data/loading/error) consistently across all
     screens
   - Prevents each screen from reinventing error/loading UI
-- [ ] Implement `lib/core/widgets/error_screen.dart` — full-screen error with
+- [x] Implement `lib/core/widgets/error_screen.dart` — full-screen error with
       retry button
-- [ ] Implement `lib/core/providers/database_providers.dart` — shared Riverpod
+- [x] Implement `lib/core/providers/database_providers.dart` — shared Riverpod
       providers for PowerSync + Supabase
-- [ ] Implement `lib/core/providers/connectivity_provider.dart` — network status
+- [x] Implement `lib/core/providers/connectivity_provider.dart` — network status
       stream
-- [ ] Add `FlutterError.onError` and `PlatformDispatcher.instance.onError`
+- [x] Add `FlutterError.onError` and `PlatformDispatcher.instance.onError`
       handlers in `main.dart`
-- [ ] Wrap each non-critical init step with try/catch — only Supabase +
+- [x] Wrap each non-critical init step with try/catch — only Supabase +
       PowerSync are fatal
 - [ ] Implement `lib/main.dart` with full initialization order (see above)
-- [ ] Run `dart run build_runner build` — verify all generators work
-- [ ] Write tests for router redirects
-- [ ] Verify: app launches with theme applied, routes to login screen
+- [x] Run `dart run build_runner build` — verify all generators work
+- [x] Write tests for router redirects
+- [x] Verify: app launches with theme applied, routes to login screen
 
 **Success criteria:** App launches, shows themed login placeholder, router
 redirects work, codegen produces clean output.

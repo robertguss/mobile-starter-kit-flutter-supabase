@@ -1,0 +1,28 @@
+{
+  "app": {
+    "title": "Flutter Supabase Starter"
+  },
+  "auth": {
+    "emailLabel": "Email",
+    "sendOtp": "Send code",
+    "otpLabel": "Verification code",
+    "verifyOtp": "Verify code",
+    "signOut": "Sign out"
+  },
+  "notes": {
+    "title": "Notes",
+    "emptyState": "No notes yet."
+  },
+  "settings": {
+    "title": "Settings",
+    "notifications": "Notification settings"
+  },
+  "subscription": {
+    "title": "Paywall",
+    "description": "Subscription paywall"
+  },
+  "common": {
+    "loading": "Loading...",
+    "retry": "Retry"
+  }
+}
