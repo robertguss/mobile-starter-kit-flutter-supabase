@@ -763,7 +763,7 @@ YAML):
 
 **Developer Setup:**
 
-- [ ] Create `Makefile` with common commands:
+- [x] Create `Makefile` with common commands:
   - `make setup` — install dependencies, run codegen
   - `make codegen` — `dart run build_runner build --delete-conflicting-outputs`
   - `make watch` — `dart run build_runner watch`
@@ -771,7 +771,7 @@ YAML):
   - `make analyze` — `flutter analyze`
   - `make supabase-start` — `supabase start`
   - `make supabase-reset` — `supabase db reset`
-- [ ] Create `README.md` with:
+- [x] Create `README.md` with:
   - Quick start guide (clone → configure → run)
   - Required external service accounts (Supabase, PowerSync, RevenueCat,
     OneSignal, Sentry, PostHog)
@@ -1150,8 +1150,8 @@ To integrate these recommendations into the existing implementation phases:
 
 ## Documentation Plan
 
-- [ ] `README.md` — Quick start, architecture overview, feature guide
-- [ ] `docs/ARCHITECTURE.md` — Detailed architecture decisions and patterns
+- [x] `README.md` — Quick start, architecture overview, feature guide
+- [x] `docs/ARCHITECTURE.md` — Detailed architecture decisions and patterns
 - [ ] Inline code comments where logic isn't self-evident (initialization order,
       sync connector)
 - [ ] Each Edge Function includes a header comment explaining its purpose and
