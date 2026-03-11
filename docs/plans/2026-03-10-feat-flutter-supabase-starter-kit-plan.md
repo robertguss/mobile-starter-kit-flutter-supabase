@@ -427,8 +427,8 @@ working.
 
 **Tasks:**
 
-- [ ] Implement `lib/core/database/supabase_client.dart` — singleton accessor
-- [ ] Write Supabase migration (notes):
+- [x] Implement `lib/core/database/supabase_client.dart` — singleton accessor
+- [x] Write Supabase migration (notes):
       `supabase/migrations/00000000000000_create_notes.sql`
   - `notes` table: `id uuid PK default gen_random_uuid()`,
     `user_id uuid NOT NULL references auth.users ON DELETE CASCADE DEFAULT auth.uid()`,
@@ -447,7 +447,7 @@ working.
     - `ALTER TABLE notes FORCE ROW LEVEL SECURITY;`
     - Separate SELECT, INSERT (with `WITH CHECK`), UPDATE (both `USING` and
       `WITH CHECK`), DELETE policies scoped to `auth.uid() = user_id`
-- [ ] Write Supabase migration (subscriptions):
+- [x] Write Supabase migration (subscriptions):
       `supabase/migrations/00000000000001_create_subscriptions.sql`
   - `subscriptions` table: `id uuid PK`,
     `user_id uuid NOT NULL UNIQUE references auth.users ON DELETE CASCADE`,
@@ -462,13 +462,13 @@ working.
     No INSERT/UPDATE/DELETE for authenticated role — only service_role (Edge
     Function) can write
   - **GRANT:** Explicit `GRANT SELECT ON subscriptions TO authenticated;`
-- [ ] Create Postgres publication **inside a migration** (for reproducibility):
+- [x] Create Postgres publication **inside a migration** (for reproducibility):
       `CREATE PUBLICATION powersync FOR TABLE notes, subscriptions;`
-- [ ] Define PowerSync schema in Dart — `Schema` with `notes` and
+- [x] Define PowerSync schema in Dart — `Schema` with `notes` and
       `subscriptions` tables
 - [ ] Configure PowerSync Sync Streams (edition 3) — sync rules for per-user
       data filtering
-- [ ] Implement `lib/core/database/powersync_connector.dart`:
+- [x] Implement `lib/core/database/powersync_connector.dart`:
   - `fetchCredentials()` — get JWT from Supabase auth session for PowerSync;
     check `session.expiresAt` and call `refreshSession()` if token expires
     within 60 seconds (SEC-2)
@@ -478,8 +478,8 @@ working.
       with schema
 - [ ] Handle sign-out: **clear local PowerSync SQLite data** when user signs out
       (privacy requirement)
-- [ ] Write `supabase/seed.sql` — development seed data
-- [ ] Write tests for PowerSync connector (mock Supabase auth for credentials)
+- [x] Write `supabase/seed.sql` — development seed data
+- [x] Write tests for PowerSync connector (mock Supabase auth for credentials)
 - [ ] Verify: `supabase start`, run migration, confirm tables + RLS policies
       exist
 
