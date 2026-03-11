@@ -126,6 +126,7 @@ Implemented functions:
 
 ## Current Gaps
 
-- PowerSync Sync Streams still need explicit configuration and verification
+- PowerSync Sync Streams are defined in `powersync/sync_rules.yaml`, but still
+  need live-project verification
 - The iOS OneSignal Notification Service Extension is not configured yet
-- CI/CD, Fastlane, and end-to-end offline sync automation are still pending
+- End-to-end offline sync automation is still pending

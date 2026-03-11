@@ -466,7 +466,7 @@ working.
       `CREATE PUBLICATION powersync FOR TABLE notes, subscriptions;`
 - [x] Define PowerSync schema in Dart — `Schema` with `notes` and
       `subscriptions` tables
-- [ ] Configure PowerSync Sync Streams (edition 3) — sync rules for per-user
+- [x] Configure PowerSync Sync Streams (edition 3) — sync rules for per-user
       data filtering
 - [x] Implement `lib/core/database/powersync_connector.dart`:
   - `fetchCredentials()` — get JWT from Supabase auth session for PowerSync;
@@ -740,9 +740,10 @@ YAML):
     `onesignal-trigger`
   - Run database migrations: `supabase db push`
   - Deploy sync rules
-- [ ] **Document all 22 GitHub Secrets** required across workflows (see
+- [x] **Document all GitHub Secrets** required across workflows (current
+      scaffolding uses 14) (see
       `docs/reviews/2026-03-10-cicd-deployment-review.md`)
-- [ ] **Document rollback procedures** for: app stores (staged rollout), Edge
+- [x] **Document rollback procedures** for: app stores (staged rollout), Edge
       Functions (redeploy previous version), migrations (down migration), sync
       rules
 

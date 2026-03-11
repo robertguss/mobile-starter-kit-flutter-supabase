@@ -55,13 +55,16 @@ make supabase-start
 make supabase-reset
 ```
 
-5. Generate code and translations.
+5. Apply the tracked PowerSync Sync Streams config from
+   `powersync/sync_rules.yaml` in your PowerSync project.
+
+6. Generate code and translations.
 
 ```bash
 make codegen
 ```
 
-6. Run the app.
+7. Run the app.
 
 ```bash
 flutter run --dart-define-from-file=config/config_local.json
@@ -92,6 +95,9 @@ Edge Functions expect these secrets in the Supabase environment:
 - `ONESIGNAL_TRIGGER_AUTH_KEY`
 - `ONESIGNAL_APP_ID`
 - `ONESIGNAL_APP_API_KEY`
+
+PowerSync Sync Streams are tracked in `powersync/sync_rules.yaml`. Keep this
+file aligned with Supabase RLS policies whenever you add a synced table.
 
 ## Common Commands
 
