@@ -151,6 +151,18 @@ class TranslationsSettingsEn {
 
 	/// en: 'Notification settings'
 	String get notifications => 'Notification settings';
+
+	/// en: 'Notifications are enabled for this device.'
+	String get notificationsEnabled => 'Notifications are enabled for this device.';
+
+	/// en: 'Notifications are off. Enable them in system settings.'
+	String get notificationsDenied => 'Notifications are off. Enable them in system settings.';
+
+	/// en: 'Notifications have not been enabled yet.'
+	String get notificationsNotDetermined => 'Notifications have not been enabled yet.';
+
+	/// en: 'Enable notifications'
+	String get enableNotifications => 'Enable notifications';
 }
 
 // Path: subscription
@@ -232,6 +244,10 @@ extension on Translations {
 			'notes.offlineStatus' => 'Offline',
 			'settings.title' => 'Settings',
 			'settings.notifications' => 'Notification settings',
+			'settings.notificationsEnabled' => 'Notifications are enabled for this device.',
+			'settings.notificationsDenied' => 'Notifications are off. Enable them in system settings.',
+			'settings.notificationsNotDetermined' => 'Notifications have not been enabled yet.',
+			'settings.enableNotifications' => 'Enable notifications',
 			'subscription.title' => 'Paywall',
 			'subscription.description' => 'Choose a subscription plan to unlock premium features.',
 			'subscription.active' => 'Pro is active',

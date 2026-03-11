@@ -18,6 +18,8 @@ import 'package:flutter_supabase_starter/features/auth/data/supabase_auth_reposi
 import 'package:flutter_supabase_starter/features/auth/domain/auth_repository.dart';
 import 'package:flutter_supabase_starter/features/notes/data/powersync_note_repository.dart';
 import 'package:flutter_supabase_starter/features/notes/domain/note_repository.dart';
+import 'package:flutter_supabase_starter/features/notifications/data/onesignal_notification_repository.dart';
+import 'package:flutter_supabase_starter/features/notifications/domain/notification_repository.dart';
 import 'package:flutter_supabase_starter/features/subscription/data/revenuecat_subscription_repository.dart';
 import 'package:flutter_supabase_starter/features/subscription/domain/subscription_repository.dart';
 import 'package:flutter_supabase_starter/features/subscription/presentation/subscription_controller.dart';
@@ -59,6 +61,7 @@ Future<void> main() async {
             database: powerSyncDatabase,
             currentUserId: () => supabaseClient.auth.currentUser?.id,
           );
+          final notificationRepository = OneSignalNotificationRepository();
           final subscriptionRepository = RevenueCatSubscriptionRepository();
 
           runApp(
@@ -68,6 +71,9 @@ Future<void> main() async {
                 overrides: [
                   authRepositoryProvider.overrideWithValue(authRepository),
                   noteRepositoryProvider.overrideWithValue(noteRepository),
+                  notificationRepositoryProvider.overrideWithValue(
+                    notificationRepository,
+                  ),
                   subscriptionRepositoryProvider.overrideWithValue(
                     subscriptionRepository,
                   ),

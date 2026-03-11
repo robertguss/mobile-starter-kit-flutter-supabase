@@ -28,7 +28,11 @@
   },
   "settings": {
     "title": "Settings",
-    "notifications": "Notification settings"
+    "notifications": "Notification settings",
+    "notificationsEnabled": "Notifications are enabled for this device.",
+    "notificationsDenied": "Notifications are off. Enable them in system settings.",
+    "notificationsNotDetermined": "Notifications have not been enabled yet.",
+    "enableNotifications": "Enable notifications"
   },
   "subscription": {
     "title": "Paywall",

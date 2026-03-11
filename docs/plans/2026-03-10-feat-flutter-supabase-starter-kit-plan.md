@@ -687,12 +687,12 @@ serves as architecture reference.
 
 **Push Notifications:**
 
-- [ ] `lib/features/notifications/domain/notification_repository.dart`
-- [ ] `lib/features/notifications/data/onesignal_notification_repository.dart`:
+- [x] `lib/features/notifications/domain/notification_repository.dart`
+- [x] `lib/features/notifications/data/onesignal_notification_repository.dart`:
   - Request permission on first relevant screen (not on app launch)
   - Handle permission denied gracefully
   - `OneSignal.login(userId)` called after auth
-- [ ] `lib/features/notifications/presentation/notification_settings_screen.dart`
+- [x] `lib/features/notifications/presentation/notification_settings_screen.dart`
 - [ ] iOS: Add Notification Service Extension target (OneSignal requirement — 7
       steps)
 - [ ] `supabase/functions/onesignal-trigger/index.ts` — Edge Function to send

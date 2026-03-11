@@ -7,6 +7,8 @@ import 'package:flutter_supabase_starter/features/auth/presentation/otp_verify_s
 import 'package:flutter_supabase_starter/features/notes/domain/note_repository.dart';
 import 'package:flutter_supabase_starter/features/notes/presentation/note_detail_screen.dart';
 import 'package:flutter_supabase_starter/features/notes/presentation/notes_list_screen.dart';
+import 'package:flutter_supabase_starter/features/notifications/domain/notification_model.dart';
+import 'package:flutter_supabase_starter/features/notifications/domain/notification_repository.dart';
 import 'package:flutter_supabase_starter/features/notifications/presentation/notification_settings_screen.dart';
 import 'package:flutter_supabase_starter/features/subscription/domain/subscription_model.dart';
 import 'package:flutter_supabase_starter/features/subscription/domain/subscription_repository.dart';
@@ -16,13 +18,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../features/notes/domain/mock_note_repository.dart';
+import '../../features/notifications/domain/mock_notification_repository.dart';
 import '../../features/subscription/domain/mock_subscription_repository.dart';
 
 void main() {
+  late MockNotificationRepository notificationRepository;
   late MockNoteRepository noteRepository;
   late MockSubscriptionRepository subscriptionRepository;
 
   setUp(() {
+    notificationRepository = MockNotificationRepository();
     noteRepository = MockNoteRepository();
     subscriptionRepository = MockSubscriptionRepository();
     when(
@@ -48,6 +53,17 @@ void main() {
     when(
       subscriptionRepository.getAvailablePackages,
     ).thenAnswer((_) async => const []);
+    when(
+      notificationRepository.watchPermissionStatus,
+    ).thenAnswer((_) => const Stream.empty());
+    when(
+      notificationRepository.getPermissionStatus,
+    ).thenAnswer(
+      (_) async => const NotificationPermissionModel(
+        status: NotificationPermissionStatus.notDetermined,
+        canRequestPermission: true,
+      ),
+    );
   });
 
   Future<ProviderContainer> pumpRouter(
@@ -62,6 +78,9 @@ void main() {
           (ref) => Stream.value(ConnectivityStatus.online),
         ),
         noteRepositoryProvider.overrideWithValue(noteRepository),
+        notificationRepositoryProvider.overrideWithValue(
+          notificationRepository,
+        ),
         subscriptionRepositoryProvider.overrideWithValue(
           subscriptionRepository,
         ),
