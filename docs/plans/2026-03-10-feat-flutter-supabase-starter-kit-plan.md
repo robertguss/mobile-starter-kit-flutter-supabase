@@ -326,9 +326,9 @@ Future<void> main() async {
 
 **Tasks:**
 
-- [ ] Run `flutter create --org com.example flutter_supabase_starter` (or
+- [x] Run `flutter create --org com.example flutter_supabase_starter` (or
       similar)
-- [ ] Add all dependencies to `pubspec.yaml`:
+- [x] Add all dependencies to `pubspec.yaml`:
   - Core: `flutter_riverpod`, `riverpod_annotation`, `riverpod_generator`,
     `go_router`
   - Data: `supabase_flutter`, `powersync` (latest with Rust client)
@@ -337,26 +337,26 @@ Future<void> main() async {
   - Observability: `sentry_flutter`, `posthog_flutter`
   - i18n/Assets: `slang`, `slang_flutter`, `flutter_gen`
   - Dev: `build_runner`, `riverpod_lint`, `very_good_analysis`, `mocktail`
-- [ ] Configure `analysis_options.yaml` with `very_good_analysis` and
+- [x] Configure `analysis_options.yaml` with `very_good_analysis` and
       `riverpod_lint`
-- [ ] Initialize Supabase CLI: `supabase init`
-- [ ] Create `config_dev.json`, `config_staging.json`, `config_prod.json` with
+- [x] Initialize Supabase CLI: `supabase init`
+- [x] Create `config_dev.json`, `config_staging.json`, `config_prod.json` with
       placeholder keys
-- [ ] Set iOS minimum deployment target to 13.0
-- [ ] Set Android compileSdkVersion to 34
-- [ ] Change Android `MainActivity` to extend `FlutterFragmentActivity`
-- [ ] Set Android `launchMode` to `singleTop` in AndroidManifest.xml
-- [ ] Configure PostHog `AUTO_INIT=false` in AndroidManifest.xml and Info.plist
-- [ ] Create `.gitignore` with Flutter defaults + `config_prod.json` +
+- [x] Set iOS minimum deployment target to 13.0
+- [x] Set Android compileSdkVersion to 34
+- [x] Change Android `MainActivity` to extend `FlutterFragmentActivity`
+- [x] Set Android `launchMode` to `singleTop` in AndroidManifest.xml
+- [x] Configure PostHog `AUTO_INIT=false` in AndroidManifest.xml and Info.plist
+- [x] Create `.gitignore` with Flutter defaults + `config_prod.json` +
       `config_staging.json`
-- [ ] Create `.env.example` listing all required environment variable names (no
+- [x] Create `.env.example` listing all required environment variable names (no
       values)
-- [ ] **Update AGENTS.md** — replace `shadcn_ui` references with Material 3 +
+- [x] **Update AGENTS.md** — replace `shadcn_ui` references with Material 3 +
       custom theme (do this NOW, not Phase 7, so all agents use correct UI
       system)
-- [ ] Add `flutter_secure_storage` to dependencies (for secure JWT storage —
+- [x] Add `flutter_secure_storage` to dependencies (for secure JWT storage —
       SEC-2)
-- [ ] Verify: `flutter analyze` passes with zero warnings
+- [x] Verify: `flutter analyze` passes with zero warnings
 
 **Success criteria:** `flutter analyze` and `flutter test` both pass (no tests
 yet, just no errors).
@@ -368,54 +368,54 @@ all working.
 
 **Tasks:**
 
-- [ ] Implement `lib/core/env/env.dart` — load `--dart-define-from-file` values
-- [ ] Implement `lib/core/observability/sentry_config.dart` — Sentry
+- [x] Implement `lib/core/env/env.dart` — load `--dart-define-from-file` values
+- [x] Implement `lib/core/observability/sentry_config.dart` — Sentry
       initialization
-- [ ] Implement `lib/core/observability/posthog_config.dart` — PostHog
+- [x] Implement `lib/core/observability/posthog_config.dart` — PostHog
       initialization
-- [ ] Implement `lib/core/observability/provider_observer.dart` — Riverpod
+- [x] Implement `lib/core/observability/provider_observer.dart` — Riverpod
       ProviderObserver that sends unhandled exceptions to Sentry
-- [ ] Implement `lib/core/theme/app_colors.dart` — centralized Material 3 color
+- [x] Implement `lib/core/theme/app_colors.dart` — centralized Material 3 color
       palette (light + dark)
-- [ ] Implement `lib/core/theme/app_typography.dart` — typography scale
-- [ ] Implement `lib/core/theme/app_theme.dart` — `ThemeData` using
+- [x] Implement `lib/core/theme/app_typography.dart` — typography scale
+- [x] Implement `lib/core/theme/app_theme.dart` — `ThemeData` using
       `colorSchemeSeed` with app_colors
-- [ ] Configure `flutter_gen` in `pubspec.yaml` — assets directory, output
-- [ ] Configure `slang` — create `i18n/strings.i18n.json` with initial strings
-- [ ] Configure `build.yaml` for multi-generator performance:
+- [x] Configure `flutter_gen` in `pubspec.yaml` — assets directory, output
+- [x] Configure `slang` — create `i18n/strings.i18n.json` with initial strings
+- [x] Configure `build.yaml` for multi-generator performance:
   - Scope `riverpod_generator` to `lib/features/**/presentation/`
   - Scope `flutter_gen_runner` to assets
   - Scope `slang_build_runner` to `i18n/`
   - Set `runs_before` ordering
-- [ ] Implement `lib/core/router/app_router.dart` — GoRouter with:
+- [x] Implement `lib/core/router/app_router.dart` — GoRouter with:
   - Auth redirect using `refreshListenable` pattern (listens to Supabase auth
     state)
   - Routes: `/login`, `/otp-verify`, `/notes` (home), `/note/:id`, `/settings`,
     `/paywall`
   - Global redirect: unauthenticated → `/login`, authenticated → `/notes`
-- [ ] Implement `lib/core/session/session_manager.dart` — Mediator pattern:
+- [x] Implement `lib/core/session/session_manager.dart` — Mediator pattern:
   - Orchestrates sign-out across all SDKs (PowerSync, RevenueCat, OneSignal,
     Supabase)
   - Decouples auth repository from other SDKs (architecture review finding #2)
   - Single point of coordination for cross-feature session lifecycle
-- [ ] Implement `lib/core/widgets/async_value_widget.dart` — reusable widget:
+- [x] Implement `lib/core/widgets/async_value_widget.dart` — reusable widget:
   - Handles `AsyncValue` states (data/loading/error) consistently across all
     screens
   - Prevents each screen from reinventing error/loading UI
-- [ ] Implement `lib/core/widgets/error_screen.dart` — full-screen error with
+- [x] Implement `lib/core/widgets/error_screen.dart` — full-screen error with
       retry button
-- [ ] Implement `lib/core/providers/database_providers.dart` — shared Riverpod
+- [x] Implement `lib/core/providers/database_providers.dart` — shared Riverpod
       providers for PowerSync + Supabase
-- [ ] Implement `lib/core/providers/connectivity_provider.dart` — network status
+- [x] Implement `lib/core/providers/connectivity_provider.dart` — network status
       stream
-- [ ] Add `FlutterError.onError` and `PlatformDispatcher.instance.onError`
+- [x] Add `FlutterError.onError` and `PlatformDispatcher.instance.onError`
       handlers in `main.dart`
-- [ ] Wrap each non-critical init step with try/catch — only Supabase +
+- [x] Wrap each non-critical init step with try/catch — only Supabase +
       PowerSync are fatal
-- [ ] Implement `lib/main.dart` with full initialization order (see above)
-- [ ] Run `dart run build_runner build` — verify all generators work
-- [ ] Write tests for router redirects
-- [ ] Verify: app launches with theme applied, routes to login screen
+- [x] Implement `lib/main.dart` with full initialization order (see above)
+- [x] Run `dart run build_runner build` — verify all generators work
+- [x] Write tests for router redirects
+- [x] Verify: app launches with theme applied, routes to login screen
 
 **Success criteria:** App launches, shows themed login placeholder, router
 redirects work, codegen produces clean output.
@@ -427,8 +427,8 @@ working.
 
 **Tasks:**
 
-- [ ] Implement `lib/core/database/supabase_client.dart` — singleton accessor
-- [ ] Write Supabase migration (notes):
+- [x] Implement `lib/core/database/supabase_client.dart` — singleton accessor
+- [x] Write Supabase migration (notes):
       `supabase/migrations/00000000000000_create_notes.sql`
   - `notes` table: `id uuid PK default gen_random_uuid()`,
     `user_id uuid NOT NULL references auth.users ON DELETE CASCADE DEFAULT auth.uid()`,
@@ -447,7 +447,7 @@ working.
     - `ALTER TABLE notes FORCE ROW LEVEL SECURITY;`
     - Separate SELECT, INSERT (with `WITH CHECK`), UPDATE (both `USING` and
       `WITH CHECK`), DELETE policies scoped to `auth.uid() = user_id`
-- [ ] Write Supabase migration (subscriptions):
+- [x] Write Supabase migration (subscriptions):
       `supabase/migrations/00000000000001_create_subscriptions.sql`
   - `subscriptions` table: `id uuid PK`,
     `user_id uuid NOT NULL UNIQUE references auth.users ON DELETE CASCADE`,
@@ -462,25 +462,25 @@ working.
     No INSERT/UPDATE/DELETE for authenticated role — only service_role (Edge
     Function) can write
   - **GRANT:** Explicit `GRANT SELECT ON subscriptions TO authenticated;`
-- [ ] Create Postgres publication **inside a migration** (for reproducibility):
+- [x] Create Postgres publication **inside a migration** (for reproducibility):
       `CREATE PUBLICATION powersync FOR TABLE notes, subscriptions;`
-- [ ] Define PowerSync schema in Dart — `Schema` with `notes` and
+- [x] Define PowerSync schema in Dart — `Schema` with `notes` and
       `subscriptions` tables
-- [ ] Configure PowerSync Sync Streams (edition 3) — sync rules for per-user
+- [x] Configure PowerSync Sync Streams (edition 3) — sync rules for per-user
       data filtering
-- [ ] Implement `lib/core/database/powersync_connector.dart`:
+- [x] Implement `lib/core/database/powersync_connector.dart`:
   - `fetchCredentials()` — get JWT from Supabase auth session for PowerSync;
     check `session.expiresAt` and call `refreshSession()` if token expires
     within 60 seconds (SEC-2)
   - `uploadData()` — batch CRUD uploads using `getCrudBatch(limit: 100)` to
     prevent OOM on large offline queues (performance P0)
-- [ ] Implement `lib/core/database/powersync_client.dart` — database singleton
+- [x] Implement `lib/core/database/powersync_client.dart` — database singleton
       with schema
-- [ ] Handle sign-out: **clear local PowerSync SQLite data** when user signs out
+- [x] Handle sign-out: **clear local PowerSync SQLite data** when user signs out
       (privacy requirement)
-- [ ] Write `supabase/seed.sql` — development seed data
-- [ ] Write tests for PowerSync connector (mock Supabase auth for credentials)
-- [ ] Verify: `supabase start`, run migration, confirm tables + RLS policies
+- [x] Write `supabase/seed.sql` — development seed data
+- [x] Write tests for PowerSync connector (mock Supabase auth for credentials)
+- [x] Verify: `supabase start`, run migration, confirm tables + RLS policies
       exist
 
 **Success criteria:** Local Supabase running, tables created with RLS, PowerSync
@@ -493,33 +493,33 @@ schema defined, connector tested.
 **TDD Sequence (per AGENTS.md):**
 
 1. **Domain first:**
-   - [ ] `lib/features/auth/domain/user_model.dart` — User entity (id, email,
+   - [x] `lib/features/auth/domain/user_model.dart` — User entity (id, email,
          createdAt)
-   - [ ] `lib/features/auth/domain/auth_repository.dart` — Abstract interface:
+   - [x] `lib/features/auth/domain/auth_repository.dart` — Abstract interface:
      - `Future<void> sendOtp(String email)`
      - `Future<User> verifyOtp(String email, String token)`
      - `Future<void> signOut()`
      - `Stream<User?> authStateChanges()`
 
 2. **Mocks + Tests:**
-   - [ ] `test/helpers/pump_app.dart` — shared helper that wraps widgets in
+   - [x] `test/helpers/pump_app.dart` — shared helper that wraps widgets in
          `MaterialApp` + `ProviderScope` with all required overrides for widget
          tests (reused across all features)
-   - [ ] `test/features/auth/domain/mock_auth_repository.dart` — mocktail mock
-   - [ ] `test/features/auth/presentation/auth_controller_test.dart`:
+   - [x] `test/features/auth/domain/mock_auth_repository.dart` — mocktail mock
+   - [x] `test/features/auth/presentation/auth_controller_test.dart`:
      - Test: sendOtp triggers loading → success states
      - Test: sendOtp with invalid email → error state
      - Test: verifyOtp with valid token → authenticated
      - Test: verifyOtp with expired/wrong OTP → error with message
      - Test: signOut clears state and local data
      - Test: auth state stream updates on sign-in/sign-out
-   - [ ] `test/features/auth/presentation/login_screen_test.dart`:
+   - [x] `test/features/auth/presentation/login_screen_test.dart`:
      - Test: renders email input and submit button
      - Test: shows validation error for empty/invalid email
      - Test: shows loading state while sending OTP
      - Test: navigates to OTP screen on success
      - Test: shows error snackbar on failure
-   - [ ] `test/features/auth/presentation/otp_verify_screen_test.dart`:
+   - [x] `test/features/auth/presentation/otp_verify_screen_test.dart`:
      - Test: renders OTP input field
      - Test: shows loading during verification
      - Test: navigates to home on success
@@ -527,18 +527,18 @@ schema defined, connector tested.
      - Test: resend OTP button with cooldown timer
 
 3. **Implementation:**
-   - [ ] `lib/features/auth/data/supabase_auth_repository.dart`:
+   - [x] `lib/features/auth/data/supabase_auth_repository.dart`:
      - `sendOtp` → `supabase.auth.signInWithOtp(email: email)`
      - `verifyOtp` →
        `supabase.auth.verifyOTP(email: email, token: token, type: OtpType.email)`
      - `signOut` → delegates to `SessionManager.signOut()` (NOT directly to
        SDKs)
      - `authStateChanges` → `supabase.auth.onAuthStateChange` mapped to User
-   - [ ] `SessionManager.onSignIn(userId)` called after successful auth:
+   - [x] `SessionManager.onSignIn(userId)` called after successful auth:
      - `Purchases.logIn(userId)` — RevenueCat (MUST happen before any purchase)
      - `OneSignal.login(userId)` — push notification targeting
      - `PowerSync.connect()` — start sync with valid JWT
-   - [ ] `SessionManager.signOut()` orchestrates full cleanup:
+   - [x] `SessionManager.signOut()` orchestrates full cleanup:
      - `PowerSync.disconnectAndClear()` — clear local data
      - `Purchases.logOut()` — RevenueCat
      - `OneSignal.logout()` — push notifications
@@ -546,11 +546,11 @@ schema defined, connector tested.
      - Clear any in-memory cached user data
 
 4. **Presentation:**
-   - [ ] `lib/features/auth/presentation/auth_controller.dart` — `@riverpod`
+   - [x] `lib/features/auth/presentation/auth_controller.dart` — `@riverpod`
          annotated controller
-   - [ ] `lib/features/auth/presentation/login_screen.dart` — Material 3 themed,
+   - [x] `lib/features/auth/presentation/login_screen.dart` — Material 3 themed,
          email input, submit
-   - [ ] `lib/features/auth/presentation/otp_verify_screen.dart` — OTP input,
+   - [x] `lib/features/auth/presentation/otp_verify_screen.dart` — OTP input,
          verify, resend
 
 **Auth error states to handle:**
@@ -579,9 +579,9 @@ indicators, sync status.
 **TDD Sequence:**
 
 1. **Domain:**
-   - [ ] `lib/features/notes/domain/note_model.dart` — Note entity (id, userId,
+   - [x] `lib/features/notes/domain/note_model.dart` — Note entity (id, userId,
          title, body, createdAt, updatedAt)
-   - [ ] `lib/features/notes/domain/note_repository.dart` — Abstract interface:
+   - [x] `lib/features/notes/domain/note_repository.dart` — Abstract interface:
      - `Future<List<Note>> getNotes({int limit = 50, int offset = 0})`
      - `Stream<List<Note>> watchNotes({int limit = 50})` — paginated from day
        one (performance P1)
@@ -591,43 +591,43 @@ indicators, sync status.
      - `Future<void> deleteNote(String id)`
 
 2. **Mocks + Tests:**
-   - [ ] `test/features/notes/domain/mock_note_repository.dart`
-   - [ ] `test/features/notes/presentation/notes_controller_test.dart`:
+   - [x] `test/features/notes/domain/mock_note_repository.dart`
+   - [x] `test/features/notes/presentation/notes_controller_test.dart`:
      - Test: watchNotes streams note list
      - Test: createNote adds to list
      - Test: updateNote modifies existing
      - Test: deleteNote removes from list
      - Test: operations work offline (mocked)
-   - [ ] `test/features/notes/presentation/notes_list_screen_test.dart`:
+   - [x] `test/features/notes/presentation/notes_list_screen_test.dart`:
      - Test: renders list of notes
      - Test: empty state shown when no notes
      - Test: pull-to-refresh triggers sync
      - Test: FAB navigates to create
      - Test: sync status indicator shows connectivity state
-   - [ ] `test/features/notes/data/powersync_note_repository_test.dart`:
+   - [x] `test/features/notes/data/powersync_note_repository_test.dart`:
      - Test: CRUD operations produce correct SQL
 
 3. **Implementation:**
-   - [ ] `lib/features/notes/data/powersync_note_repository.dart` — raw SQL via
+   - [x] `lib/features/notes/data/powersync_note_repository.dart` — raw SQL via
          PowerSync
-   - [ ] All reads/writes target local PowerSync SQLite (offline-first per
+   - [x] All reads/writes target local PowerSync SQLite (offline-first per
          AGENTS.md)
-   - [ ] `lib/features/notes/presentation/notes_controller.dart` — `@riverpod`
+   - [x] `lib/features/notes/presentation/notes_controller.dart` — `@riverpod`
          with `AsyncValue`
-   - [ ] `lib/features/notes/presentation/notes_list_screen.dart` — Material 3
+   - [x] `lib/features/notes/presentation/notes_list_screen.dart` — Material 3
          list
-   - [ ] `lib/features/notes/presentation/note_detail_screen.dart` — view/edit
+   - [x] `lib/features/notes/presentation/note_detail_screen.dart` — view/edit
          with auto-save
-   - [ ] `lib/features/notes/presentation/widgets/note_card.dart` — list item
+   - [x] `lib/features/notes/presentation/widgets/note_card.dart` — list item
          widget
-   - [ ] `lib/features/notes/presentation/widgets/sync_status_indicator.dart` —
+   - [x] `lib/features/notes/presentation/widgets/sync_status_indicator.dart` —
          shows online/offline/syncing
-   - [ ] Use `ListView.builder` (not `ListView`) for notes list with
+   - [x] Use `ListView.builder` (not `ListView`) for notes list with
          `itemExtent` or `prototypeItem` for scroll performance
-   - [ ] Use `const` constructors on all stateless widgets (NoteCard, etc.) to
+   - [x] Use `const` constructors on all stateless widgets (NoteCard, etc.) to
          prevent unnecessary rebuilds
-   - [ ] Add pull-to-refresh on notes list using `RefreshIndicator`
-   - [ ] Add golden tests for design system widgets (NoteCard,
+   - [x] Add pull-to-refresh on notes list using `RefreshIndicator`
+   - [x] Add golden tests for design system widgets (NoteCard,
          SyncStatusIndicator) to catch visual regressions
 
 **Success criteria:** Full CRUD works offline, syncs when online, tests pass,
@@ -641,32 +641,32 @@ serves as architecture reference.
 
 **Subscriptions (TDD):**
 
-- [ ] `lib/features/subscription/domain/subscription_model.dart`
-- [ ] `lib/features/subscription/domain/subscription_repository.dart` — abstract
+- [x] `lib/features/subscription/domain/subscription_model.dart`
+- [x] `lib/features/subscription/domain/subscription_repository.dart` — abstract
       interface
-- [ ] `test/features/subscription/domain/mock_subscription_repository.dart`
-- [ ] `test/features/subscription/presentation/subscription_controller_test.dart`
-- [ ] `lib/features/subscription/data/revenuecat_subscription_repository.dart`:
+- [x] `test/features/subscription/domain/mock_subscription_repository.dart`
+- [x] `test/features/subscription/presentation/subscription_controller_test.dart`
+- [x] `lib/features/subscription/data/revenuecat_subscription_repository.dart`:
   - Check entitlements on app launch
   - Listen to `Purchases.addCustomerInfoUpdateListener`
   - Expose subscription status as Riverpod provider
-- [ ] `lib/features/subscription/presentation/subscription_controller.dart`
-- [ ] `lib/features/subscription/presentation/paywall_screen.dart` — RevenueCat
+- [x] `lib/features/subscription/presentation/subscription_controller.dart`
+- [x] `lib/features/subscription/presentation/paywall_screen.dart` — RevenueCat
       paywall UI
 
 **Supabase Edge Functions — shared infrastructure:**
 
-- [ ] `supabase/functions/_shared/supabase-client.ts` — shared Supabase client
+- [x] `supabase/functions/_shared/supabase-client.ts` — shared Supabase client
       with service_role key
-- [ ] `supabase/functions/_shared/types.ts` — discriminated union types for
+- [x] `supabase/functions/_shared/types.ts` — discriminated union types for
       RevenueCat events
-- [ ] `supabase/functions/_shared/responses.ts` — standard JSON error/success
+- [x] `supabase/functions/_shared/responses.ts` — standard JSON error/success
       response helpers
-- [ ] `supabase/functions/import_map.json` — pin dependency versions
+- [x] `supabase/functions/import_map.json` — pin dependency versions
 
 **Supabase Edge Function — RevenueCat webhook:**
 
-- [ ] `supabase/functions/revenuecat-webhook/handler.ts` — extracted for
+- [x] `supabase/functions/revenuecat-webhook/handler.ts` — extracted for
       testability:
   - Verify `Authorization` bearer token with **constant-time comparison**
     (crypto.subtle HMAC — see
@@ -680,22 +680,22 @@ serves as architecture reference.
   - Idempotency: deduplicate on RevenueCat event `id`
   - Log to `webhook_audit_log` table for non-repudiation
   - Return generic error messages (never leak stack traces)
-- [ ] `supabase/functions/revenuecat-webhook/index.ts` — `Deno.serve()` entry
+- [x] `supabase/functions/revenuecat-webhook/index.ts` — `Deno.serve()` entry
       point (NOT deprecated `serve` import)
-- [ ] **Tests:** `supabase/functions/revenuecat-webhook/handler_test.ts` — Deno
+- [x] **Tests:** `supabase/functions/revenuecat-webhook/handler_test.ts` — Deno
       test runner (TDD gap identified by TypeScript reviewer)
 
 **Push Notifications:**
 
-- [ ] `lib/features/notifications/domain/notification_repository.dart`
-- [ ] `lib/features/notifications/data/onesignal_notification_repository.dart`:
+- [x] `lib/features/notifications/domain/notification_repository.dart`
+- [x] `lib/features/notifications/data/onesignal_notification_repository.dart`:
   - Request permission on first relevant screen (not on app launch)
   - Handle permission denied gracefully
   - `OneSignal.login(userId)` called after auth
-- [ ] `lib/features/notifications/presentation/notification_settings_screen.dart`
-- [ ] iOS: Add Notification Service Extension target (OneSignal requirement — 7
+- [x] `lib/features/notifications/presentation/notification_settings_screen.dart`
+- [x] iOS: Add Notification Service Extension target (OneSignal requirement — 7
       steps)
-- [ ] `supabase/functions/onesignal-trigger/index.ts` — Edge Function to send
+- [x] `supabase/functions/onesignal-trigger/index.ts` — Edge Function to send
       notifications
 
 **Success criteria:** Paywall shows offerings, webhook processes events, push
@@ -709,7 +709,7 @@ automation.
 **GitHub Actions** (see `docs/plans/2026-03-10-cicd-recommendations.md` for full
 YAML):
 
-- [ ] `.github/workflows/test.yml`:
+- [x] `.github/workflows/test.yml`:
   - Trigger: PR to main, with concurrency control (cancel stale runs)
   - Steps: checkout, Flutter setup (with SDK caching via
     `subosito/flutter-action`), pub cache (keyed on `pubspec.lock`),
@@ -717,7 +717,7 @@ YAML):
     `flutter analyze`, `flutter test --coverage`
   - Coverage threshold gate (80% minimum)
   - Test randomization for flaky test detection
-- [ ] `.github/workflows/build-android.yml`:
+- [x] `.github/workflows/build-android.yml`:
   - Trigger: tag push (not every push to main)
   - Steps: checkout, Flutter setup, Java 17 + Gradle caching, **generate
     config_prod.json from GitHub Secrets**,
@@ -725,7 +725,7 @@ YAML):
     upload to Google Play via Fastlane
   - Protected environment with required reviewers
   - Always() cleanup of keystore artifacts
-- [ ] `.github/workflows/build-ios.yml`:
+- [x] `.github/workflows/build-ios.yml`:
   - Trigger: tag push
   - Runner: `macos-14` (Apple Silicon — 2-3x faster)
   - Steps: checkout, Flutter setup, CocoaPods caching (keyed on `Podfile.lock`),
@@ -734,36 +734,37 @@ YAML):
     `flutter build ipa --dart-define-from-file=config_prod.json --obfuscate --split-debug-info=build/debug-info`,
     upload to TestFlight
   - App Store Connect API key auth (avoids 2FA issues)
-- [ ] `.github/workflows/deploy-supabase.yml` (NEW — identified as critical
+- [x] `.github/workflows/deploy-supabase.yml` (NEW — identified as critical
       gap):
   - Deploy Edge Functions: `supabase functions deploy revenuecat-webhook` and
     `onesignal-trigger`
   - Run database migrations: `supabase db push`
   - Deploy sync rules
-- [ ] **Document all 22 GitHub Secrets** required across workflows (see
+- [x] **Document all GitHub Secrets** required across workflows (current
+      scaffolding uses 14) (see
       `docs/reviews/2026-03-10-cicd-deployment-review.md`)
-- [ ] **Document rollback procedures** for: app stores (staged rollout), Edge
+- [x] **Document rollback procedures** for: app stores (staged rollout), Edge
       Functions (redeploy previous version), migrations (down migration), sync
       rules
 
 **Fastlane:**
 
-- [ ] `fastlane/Fastfile` — lanes for `test`, `build_android`, `build_ios`,
+- [x] `fastlane/Fastfile` — lanes for `test`, `build_android`, `build_ios`,
       `deploy_android`, `deploy_ios`
-- [ ] `fastlane/Appfile` — placeholder app identifiers
-- [ ] `fastlane/Matchfile` — code signing configuration
+- [x] `fastlane/Appfile` — placeholder app identifiers
+- [x] `fastlane/Matchfile` — code signing configuration
 
 **Testing:**
 
-- [ ] Add `integration_test/offline_sync_test.dart` — end-to-end test for
+- [x] Add `integration_test/offline_sync_test.dart` — end-to-end test for
       offline create → reconnect → verify sync completes
-- [ ] Add startup performance measurement in `main.dart` using `Stopwatch` that
+- [x] Add startup performance measurement in `main.dart` using `Stopwatch` that
       logs initialization phase durations to Sentry as performance transactions
       (validates <3s non-functional requirement)
 
 **Developer Setup:**
 
-- [ ] Create `Makefile` with common commands:
+- [x] Create `Makefile` with common commands:
   - `make setup` — install dependencies, run codegen
   - `make codegen` — `dart run build_runner build --delete-conflicting-outputs`
   - `make watch` — `dart run build_runner watch`
@@ -771,7 +772,7 @@ YAML):
   - `make analyze` — `flutter analyze`
   - `make supabase-start` — `supabase start`
   - `make supabase-reset` — `supabase db reset`
-- [ ] Create `README.md` with:
+- [x] Create `README.md` with:
   - Quick start guide (clone → configure → run)
   - Required external service accounts (Supabase, PowerSync, RevenueCat,
     OneSignal, Sentry, PostHog)
@@ -871,35 +872,35 @@ or for a different backend) without touching `presentation/`.
 
 - [ ] Email OTP authentication works end-to-end (send, verify, sign out)
 - [ ] Notes CRUD works fully offline and syncs when online
-- [ ] Sync status indicator accurately shows online/offline/syncing states
+- [x] Sync status indicator accurately shows online/offline/syncing states
 - [ ] RevenueCat paywall displays offerings and processes purchases
 - [ ] RevenueCat webhook correctly updates subscription status in Supabase
 - [ ] OneSignal push notifications deliver on both iOS and Android
-- [ ] Sign-out clears all local PowerSync data
-- [ ] Supabase RLS policies prevent cross-user data access
-- [ ] All user-facing strings are in slang i18n files
-- [ ] All asset references use flutter_gen `Assets` class
-- [ ] Light and dark Material 3 themes work correctly
+- [x] Sign-out clears all local PowerSync data
+- [x] Supabase RLS policies prevent cross-user data access
+- [x] All user-facing strings are in slang i18n files
+- [x] All asset references use flutter_gen `Assets` class
+- [x] Light and dark Material 3 themes work correctly
 
 ### Non-Functional Requirements
 
-- [ ] `flutter analyze` passes with zero warnings (very_good_analysis +
+- [x] `flutter analyze` passes with zero warnings (very_good_analysis +
       riverpod_lint)
-- [ ] Test coverage ≥ 80% across all features
+- [x] Test coverage ≥ 80% across all features
 - [ ] App launches in < 3 seconds on mid-range device
 - [ ] Offline-to-online sync completes within 5 seconds for < 100 records
-- [ ] iOS minimum deployment target: 13.0
-- [ ] Android compileSdkVersion: 34
+- [x] iOS minimum deployment target: 13.0
+- [x] Android compileSdkVersion: 34
 
 ### Quality Gates
 
 - [ ] All TDD sequences followed (domain → mocks → tests → data → presentation)
-- [ ] No direct Supabase queries outside Auth/Edge Functions/Storage (per
+- [x] No direct Supabase queries outside Auth/Edge Functions/Storage (per
       AGENTS.md)
-- [ ] No manual try/catch for logging (ProviderObserver handles it)
-- [ ] No hardcoded asset strings or user-facing strings
+- [x] No manual try/catch for logging (ProviderObserver handles it)
+- [x] No hardcoded asset strings or user-facing strings
 - [ ] README enables clone-to-running in < 30 minutes (with service accounts)
-- [ ] AGENTS.md updated to reflect Material 3 decision
+- [x] AGENTS.md updated to reflect Material 3 decision
 
 ## Dependencies & Prerequisites
 
@@ -947,7 +948,7 @@ security, secret management, and mobile app security.
 The plan mentions RLS for `notes` and `subscriptions`, but the policies need to
 be more specific and comprehensive:
 
-- [ ] **Write explicit RLS policies per operation** — do not rely on a single
+- [x] **Write explicit RLS policies per operation** — do not rely on a single
       `USING (auth.uid() = user_id)` for all operations. Define separate
       `SELECT`, `INSERT`, `UPDATE`, `DELETE` policies:
   - `INSERT` policy must include `WITH CHECK (auth.uid() = user_id)` to prevent
@@ -955,19 +956,19 @@ be more specific and comprehensive:
   - `UPDATE` policy should use both `USING` and `WITH CHECK` to prevent
     ownership transfer via update
   - `DELETE` policy must use `USING (auth.uid() = user_id)`
-- [ ] **Add RLS to the `subscriptions` table for all operations** — the plan
+- [x] **Add RLS to the `subscriptions` table for all operations** — the plan
       says "users can only read" but the webhook Edge Function writes via
       service role key. Ensure: `SELECT` policy for authenticated users, no
       `INSERT`/`UPDATE`/`DELETE` for authenticated role (only service role can
       write)
-- [ ] **Verify RLS is enabled and forced** — add to each migration:
+- [x] **Verify RLS is enabled and forced** — add to each migration:
       `ALTER TABLE <table> ENABLE ROW LEVEL SECURITY;` and
       `ALTER TABLE <table> FORCE ROW LEVEL SECURITY;` (FORCE ensures RLS applies
       even to table owners in non-superuser contexts)
-- [ ] **Test RLS policies explicitly** — add integration tests that attempt
+- [x] **Test RLS policies explicitly** — add integration tests that attempt
       cross-user data access and confirm denial. Example: User A creates a note,
       User B queries notes, User B should get zero results
-- [ ] **Audit PowerSync sync rules** — ensure PowerSync Sync Streams filtering
+- [x] **Audit PowerSync sync rules** — ensure PowerSync Sync Streams filtering
       mirrors RLS policies. A misconfigured sync rule could leak data to other
       users even if RLS is correct on direct queries
 
@@ -975,7 +976,7 @@ be more specific and comprehensive:
 
 **STRIDE category:** Spoofing, Tampering
 
-- [ ] **Secure JWT storage** — Supabase Flutter SDK stores tokens in
+- [x] **Secure JWT storage** — Supabase Flutter SDK stores tokens in
       `SharedPreferences` (Android) / `NSUserDefaults` (iOS) by default.
       Override with `flutter_secure_storage` to use Android Keystore / iOS
       Keychain:
@@ -989,7 +990,7 @@ be more specific and comprehensive:
     ),
   );
   ```
-- [ ] **Handle token refresh race conditions** — PowerSync's
+- [x] **Handle token refresh race conditions** — PowerSync's
       `fetchCredentials()` gets the JWT from the current Supabase session. Add
       logic to check `session.expiresAt` and call
       `supabase.auth.refreshSession()` if the token expires within 60 seconds,
@@ -997,11 +998,11 @@ be more specific and comprehensive:
 - [ ] **Invalidate all sessions on password/email change** — if the template
       adds account management later, ensure `signOut()` is called on all devices
       (Supabase supports global sign-out)
-- [ ] **OTP brute-force protection** — the plan mentions "max 3 attempts, then
+- [x] **OTP brute-force protection** — the plan mentions "max 3 attempts, then
       re-send" but this must be enforced server-side via Supabase rate limiting
       config, not just client-side UI. Verify Supabase project auth settings
       have appropriate rate limits configured
-- [ ] **Clear auth state completely on sign-out** — in addition to
+- [x] **Clear auth state completely on sign-out** — in addition to
       `PowerSync.disconnectAndClear()`, ensure: Supabase session cleared,
       RevenueCat logged out (`Purchases.logOut()`), OneSignal logged out
       (`OneSignal.logout()`), any in-memory cached user data nullified. The plan
@@ -1014,80 +1015,80 @@ be more specific and comprehensive:
 
 The RevenueCat webhook handler is a critical attack surface:
 
-- [ ] **Verify webhook authorization token** — RevenueCat sends an
+- [x] **Verify webhook authorization token** — RevenueCat sends an
       `Authorization` header with each webhook. The Edge Function must:
   1. Read the `Authorization` header from the request
   2. Compare against the webhook auth key stored in Supabase Edge Function
      secrets (`Deno.env.get('REVENUECAT_WEBHOOK_AUTH_KEY')`)
   3. Return 401 immediately if the token does not match
   4. Use constant-time string comparison to prevent timing attacks
-- [ ] **Validate request payload schema** — parse and validate the webhook body
+- [x] **Validate request payload schema** — parse and validate the webhook body
       against expected RevenueCat event types. Reject unexpected event types or
       malformed payloads with 400
-- [ ] **Use Supabase service role key in Edge Functions** — the Edge Function
+- [x] **Use Supabase service role key in Edge Functions** — the Edge Function
       must use the service role key (not the anon key) to bypass RLS and write
       to the `subscriptions` table. Store as `SUPABASE_SERVICE_ROLE_KEY` secret
       via `supabase secrets set`
-- [ ] **Idempotency** — RevenueCat may send duplicate webhooks. Use the event
+- [x] **Idempotency** — RevenueCat may send duplicate webhooks. Use the event
       `id` field as an idempotency key (upsert on `id` or maintain a processed
       events log)
-- [ ] **Log all webhook events** — for non-repudiation, log every webhook
+- [x] **Log all webhook events** — for non-repudiation, log every webhook
       invocation (event type, app_user_id, timestamp) to a separate
       `webhook_audit_log` table. This enables debugging subscription disputes
-- [ ] **Apply the same pattern to the OneSignal trigger Edge Function** —
+- [x] **Apply the same pattern to the OneSignal trigger Edge Function** —
       authenticate incoming requests and validate payloads
 
 ### SEC-4: Secret & Configuration Management
 
 **STRIDE category:** Information Disclosure
 
-- [ ] **Never commit production or staging secrets** — the plan has
+- [x] **Never commit production or staging secrets** — the plan has
       `config_prod.json` in `.gitignore` which is good, but also ensure
       `config_staging.json` is gitignored. Only `config_dev.json` (pointing to
       local Supabase) should be committed
-- [ ] **Document which keys are safe to embed in the app** — Supabase anon key,
+- [x] **Document which keys are safe to embed in the app** — Supabase anon key,
       PostHog API key, OneSignal App ID, and RevenueCat public API key are
       designed to be public (embedded in client apps). Make this explicit in
       README to prevent confusion
-- [ ] **Never embed service role keys in the Flutter app** — the Supabase
+- [x] **Never embed service role keys in the Flutter app** — the Supabase
       service role key must only exist in Edge Function secrets. Add a comment
       or lint rule to flag any reference to service role keys in `lib/`
-- [ ] **Supabase Edge Function secrets** — store via `supabase secrets set`:
+- [x] **Supabase Edge Function secrets** — store via `supabase secrets set`:
   - `REVENUECAT_WEBHOOK_AUTH_KEY`
   - `SUPABASE_SERVICE_ROLE_KEY` (for Edge Functions to bypass RLS)
   - `ONESIGNAL_REST_API_KEY` (for server-to-server push triggers)
-- [ ] **GitHub Actions secrets** — store all production config values as
+- [x] **GitHub Actions secrets** — store all production config values as
       repository secrets, inject via `--dart-define-from-file` using a generated
       config file in CI. Never echo secrets in workflow logs
-- [ ] **Add a pre-commit hook or CI check** — scan for accidentally committed
+- [x] **Add a pre-commit hook or CI check** — scan for accidentally committed
       secrets (API keys, DSNs) using a tool like `gitleaks` or `trufflehog`
 
 ### SEC-5: Mobile App Security
 
 **STRIDE category:** Tampering, Information Disclosure
 
-- [ ] **Certificate pinning** — document how template users should add TLS
+- [x] **Certificate pinning** — document how template users should add TLS
       certificate pinning for production domains (options:
       `http_certificate_pinning`, Network Security Config on Android, ATS on
       iOS). Not wired in the starter kit — production-specific
-- [ ] **Root/jailbreak detection** — document as a production recommendation for
+- [x] **Root/jailbreak detection** — document as a production recommendation for
       apps handling payments (options: `flutter_jailbreak_detection`,
       `freerasp`). Not wired in the starter kit — production-specific
-- [ ] **Code obfuscation** — add
+- [x] **Code obfuscation** — add
       `--obfuscate --split-debug-info=build/debug-info` to the release build
       commands in Fastlane and CI workflows. This is a Flutter best practice but
       must be explicitly configured
-- [ ] **Disable debug logging in release** — ensure Sentry and PostHog are not
+- [x] **Disable debug logging in release** — ensure Sentry and PostHog are not
       sending debug-level data in production. Use `kReleaseMode` or the
       environment config to gate log verbosity
-- [ ] **Secure the local SQLite database** — document that PowerSync's local
+- [x] **Secure the local SQLite database** — document that PowerSync's local
       SQLite stores user data in plaintext. For sensitive apps, SQLCipher
       encryption is recommended. Production-specific — not wired in starter kit
-- [ ] **Deep link validation** — the Supabase auth callback URL scheme
+- [x] **Deep link validation** — the Supabase auth callback URL scheme
       (`io.supabase.flutter://callback`) can be intercepted by malicious apps.
       Use Android App Links (verified) and iOS Universal Links instead of custom
       URL schemes for production deployments. Document this upgrade path
-- [ ] **Prevent screenshot/screen recording on sensitive screens** — document as
+- [x] **Prevent screenshot/screen recording on sensitive screens** — document as
       optional: `FLAG_SECURE` (Android) and screen capture prevention (iOS) for
       OTP verification and paywall screens. Production-specific
 
@@ -1095,18 +1096,18 @@ The RevenueCat webhook handler is a critical attack surface:
 
 **STRIDE category:** Denial of Service, Tampering
 
-- [ ] **Rate limit Edge Functions** — Supabase Edge Functions do not have
+- [x] **Rate limit Edge Functions** — Supabase Edge Functions do not have
       built-in per-endpoint rate limiting. Implement rate limiting in the
       function code (e.g., track request counts per IP in a database table or
       use Supabase's `pg_net`) or place an upstream API gateway in front
-- [ ] **Input validation in Edge Functions** — validate and sanitize all inputs
+- [x] **Input validation in Edge Functions** — validate and sanitize all inputs
       in `revenuecat-webhook/index.ts` and `onesignal-trigger/index.ts`. Never
       trust client-supplied data. Use Zod or a similar TypeScript schema
       validation library in the Deno Edge Functions
-- [ ] **CORS configuration** — Edge Functions should have strict CORS policies.
+- [x] **CORS configuration** — Edge Functions should have strict CORS policies.
       Webhook endpoints should reject browser-based requests entirely (no
       `Access-Control-Allow-Origin` header)
-- [ ] **Error responses** — never return stack traces or internal error details
+- [x] **Error responses** — never return stack traces or internal error details
       to callers. Return generic error messages (e.g.,
       `{ "error": "Bad request" }`) and log details server-side
 
@@ -1114,14 +1115,14 @@ The RevenueCat webhook handler is a critical attack surface:
 
 **STRIDE category:** Repudiation
 
-- [ ] **Sentry PII scrubbing** — the plan enables `sendDefaultPii: true` in
+- [x] **Sentry PII scrubbing** — the plan enables `sendDefaultPii: true` in
       Sentry. Review what PII this includes (IP addresses, user agents, request
       headers). For GDPR compliance, consider setting this to `false` or
       configuring `beforeSend` to scrub sensitive fields
-- [ ] **Audit logging** — add a database trigger or application-level logging
+- [x] **Audit logging** — add a database trigger or application-level logging
       for security-relevant events: failed auth attempts, RLS policy violations
       (via Supabase logs), subscription status changes, admin actions
-- [ ] **Alerting** — configure Sentry alerts for unusual patterns: spike in auth
+- [x] **Alerting** — configure Sentry alerts for unusual patterns: spike in auth
       failures (credential stuffing), unusual error rates in Edge Functions
       (webhook abuse), elevated 403 responses (RLS policy denials)
 
@@ -1150,11 +1151,11 @@ To integrate these recommendations into the existing implementation phases:
 
 ## Documentation Plan
 
-- [ ] `README.md` — Quick start, architecture overview, feature guide
-- [ ] `docs/ARCHITECTURE.md` — Detailed architecture decisions and patterns
-- [ ] Inline code comments where logic isn't self-evident (initialization order,
+- [x] `README.md` — Quick start, architecture overview, feature guide
+- [x] `docs/ARCHITECTURE.md` — Detailed architecture decisions and patterns
+- [x] Inline code comments where logic isn't self-evident (initialization order,
       sync connector)
-- [ ] Each Edge Function includes a header comment explaining its purpose and
+- [x] Each Edge Function includes a header comment explaining its purpose and
       trigger
 
 ## Sources & References

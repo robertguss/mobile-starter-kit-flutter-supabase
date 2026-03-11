@@ -1,0 +1,3 @@
+app_identifier(ENV.fetch("FASTLANE_APP_IDENTIFIER", "com.example.flutterSupabaseStarter"))
+package_name(ENV.fetch("FASTLANE_ANDROID_PACKAGE_NAME", "com.example.flutter_supabase_starter"))
+apple_id(ENV.fetch("FASTLANE_APPLE_ID", "developer@example.com"))

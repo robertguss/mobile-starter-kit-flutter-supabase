@@ -1,0 +1,17 @@
+config:
+  edition: 3
+
+streams:
+  user_data:
+    description: Per-user notes and subscription state mirrored for offline use.
+    auto_subscribe: true
+    queries:
+      - >
+        SELECT id, user_id, title, body, created_at, updated_at
+        FROM notes
+        WHERE user_id = auth.user_id()
+      - >
+        SELECT id, user_id, status, product_id, original_purchase_date,
+               expires_at, created_at, updated_at
+        FROM subscriptions
+        WHERE user_id = auth.user_id()

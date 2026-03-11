@@ -1,0 +1,52 @@
+default_platform(:ios)
+
+platform :android do
+  desc "Validate Android release prerequisites"
+  lane :build_android do
+    UI.user_error!("CONFIG_PROD_JSON must be generated in CI") unless File.exist?("../config/config_prod.json")
+    UI.message("Android release prerequisites are in place.")
+  end
+
+  desc "Upload Android app bundle to Google Play"
+  lane :deploy_android do
+    service_account_json = ENV["GOOGLE_PLAY_SERVICE_ACCOUNT_JSON"]
+    UI.user_error!("GOOGLE_PLAY_SERVICE_ACCOUNT_JSON is required") if service_account_json.to_s.empty?
+
+    upload_to_play_store(
+      json_key_data: service_account_json,
+      package_name: ENV.fetch("SUPPLY_PACKAGE_NAME", "com.example.flutter_supabase_starter"),
+      aab: "../build/app/outputs/bundle/release/app-release.aab",
+      track: ENV.fetch("SUPPLY_TRACK", "internal"),
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+      skip_upload_metadata: true,
+    )
+  end
+end
+
+platform :ios do
+  desc "Install iOS signing assets via Match"
+  lane :build_ios do
+    match(
+      type: "appstore",
+      readonly: true,
+      app_identifier: [ENV.fetch("FASTLANE_APP_IDENTIFIER", "com.example.flutterSupabaseStarter")],
+    )
+  end
+
+  desc "Upload the built IPA to TestFlight"
+  lane :deploy_ios do
+    api_key = app_store_connect_api_key(
+      key_id: ENV.fetch("APP_STORE_CONNECT_KEY_ID"),
+      issuer_id: ENV.fetch("APP_STORE_CONNECT_ISSUER_ID"),
+      key_content: Base64.decode64(ENV.fetch("APP_STORE_CONNECT_API_KEY_BASE64")),
+      is_key_content_base64: false,
+    )
+
+    upload_to_testflight(
+      api_key: api_key,
+      ipa: Dir["../build/ios/ipa/*.ipa"].first,
+      skip_waiting_for_build_processing: true,
+    )
+  end
+end

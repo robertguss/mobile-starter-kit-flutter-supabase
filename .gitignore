@@ -32,6 +32,8 @@ migrate_working_dir/
 .pub/
 /build/
 /coverage/
+config/config_prod.json
+config/config_staging.json
 
 # Symbolication related
 app.*.symbols

@@ -1,0 +1,52 @@
+{
+  "app": {
+    "title": "Flutter Supabase Starter"
+  },
+  "auth": {
+    "emailLabel": "Email",
+    "emailHint": "you@example.com",
+    "invalidEmailError": "Enter a valid email address.",
+    "sendOtpError": "We could not send a code right now.",
+    "sendOtp": "Send code",
+    "otpLabel": "Verification code",
+    "otpHint": "123456",
+    "otpError": "That code is invalid or expired.",
+    "verifyOtp": "Verify code",
+    "resendOtp": "Resend code",
+    "resendCooldown": "Resend in 30s",
+    "signOut": "Sign out"
+  },
+  "notes": {
+    "title": "Notes",
+    "emptyState": "No notes yet.",
+    "newNoteTitle": "Untitled note",
+    "create": "New note",
+    "titleLabel": "Title",
+    "bodyLabel": "Body",
+    "onlineStatus": "Online",
+    "offlineStatus": "Offline",
+    "syncingStatus": "Syncing..."
+  },
+  "settings": {
+    "title": "Settings",
+    "notifications": "Notification settings",
+    "notificationsEnabled": "Notifications are enabled for this device.",
+    "notificationsDenied": "Notifications are off. Enable them in system settings.",
+    "notificationsNotDetermined": "Notifications have not been enabled yet.",
+    "enableNotifications": "Enable notifications"
+  },
+  "subscription": {
+    "title": "Paywall",
+    "description": "Choose a subscription plan to unlock premium features.",
+    "active": "Pro is active",
+    "inactive": "No active subscription",
+    "expiresAtLabel": "Renews on",
+    "noPackages": "No subscription packages are available right now.",
+    "subscribe": "Subscribe",
+    "restorePurchases": "Restore purchases"
+  },
+  "common": {
+    "loading": "Loading...",
+    "retry": "Retry"
+  }
+}

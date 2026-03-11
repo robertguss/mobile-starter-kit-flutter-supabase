@@ -1,0 +1,25 @@
+targets:
+  $default:
+    sources:
+      include:
+        - $package$
+        - pubspec.yaml
+        - lib/**
+        - test/**
+        - assets/**
+        - i18n/**
+    builders:
+      riverpod_generator:
+        generate_for:
+          include:
+            - lib/core/providers/**.dart
+            - lib/core/router/**.dart
+            - lib/core/session/**.dart
+            - lib/features/**/domain/**.dart
+            - lib/features/**/presentation/**.dart
+      flutter_gen_runner:
+        generate_for:
+          include:
+            - pubspec.yaml
+        options:
+          output: lib/gen/
