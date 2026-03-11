@@ -627,7 +627,7 @@ indicators, sync status.
    - [x] Use `const` constructors on all stateless widgets (NoteCard, etc.) to
          prevent unnecessary rebuilds
    - [x] Add pull-to-refresh on notes list using `RefreshIndicator`
-   - [ ] Add golden tests for design system widgets (NoteCard,
+   - [x] Add golden tests for design system widgets (NoteCard,
          SyncStatusIndicator) to catch visual regressions
 
 **Success criteria:** Full CRUD works offline, syncs when online, tests pass,
