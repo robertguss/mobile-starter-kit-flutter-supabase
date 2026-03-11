@@ -480,7 +480,7 @@ working.
       (privacy requirement)
 - [x] Write `supabase/seed.sql` — development seed data
 - [x] Write tests for PowerSync connector (mock Supabase auth for credentials)
-- [ ] Verify: `supabase start`, run migration, confirm tables + RLS policies
+- [x] Verify: `supabase start`, run migration, confirm tables + RLS policies
       exist
 
 **Success criteria:** Local Supabase running, tables created with RLS, PowerSync
