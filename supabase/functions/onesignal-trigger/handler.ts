@@ -1,3 +1,9 @@
+/**
+ * OneSignal trigger handler.
+ *
+ * Auth model: trusted backend callers only. Requests must present the exact
+ * shared authorization token configured in `ONESIGNAL_TRIGGER_AUTH_KEY`.
+ */
 import { errorResponse, successResponse } from "../_shared/responses.ts";
 
 const UUID_REGEX =

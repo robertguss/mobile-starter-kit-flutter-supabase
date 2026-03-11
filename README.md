@@ -99,6 +99,9 @@ Edge Functions expect these secrets in the Supabase environment:
 PowerSync Sync Streams are tracked in `powersync/sync_rules.yaml`. Keep this
 file aligned with Supabase RLS policies whenever you add a synced table.
 
+Security boundaries, secret handling, and mobile hardening guidance live in
+[docs/SECURITY.md](/Users/robertguss/.config/superpowers/worktrees/flutter-supabase-starter-kit/codex-flutter-supabase-starter-kit/docs/SECURITY.md).
+
 ## Common Commands
 
 ```bash
@@ -148,3 +151,8 @@ make analyze
 make test
 make edge-test
 ```
+
+For release readiness, also review
+[docs/DEPLOYMENT.md](/Users/robertguss/.config/superpowers/worktrees/flutter-supabase-starter-kit/codex-flutter-supabase-starter-kit/docs/DEPLOYMENT.md)
+and
+[docs/SECURITY.md](/Users/robertguss/.config/superpowers/worktrees/flutter-supabase-starter-kit/codex-flutter-supabase-starter-kit/docs/SECURITY.md).

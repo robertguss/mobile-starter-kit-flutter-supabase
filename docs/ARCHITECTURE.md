@@ -126,7 +126,7 @@ Implemented functions:
 
 ## Current Gaps
 
-- PowerSync Sync Streams are defined in `powersync/sync_rules.yaml`, but still
-  need live-project verification
-- The iOS OneSignal Notification Service Extension is not configured yet
-- End-to-end offline sync automation is still pending
+- PowerSync Sync Streams are tracked in `powersync/sync_rules.yaml`, but still
+  require ongoing verification in each real PowerSync project
+- Acceptance checks that depend on live third-party accounts remain manual:
+  OTP auth, purchases, webhook delivery, and push delivery

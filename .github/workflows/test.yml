@@ -18,6 +18,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
+      - name: Scan for committed secrets
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:

@@ -884,13 +884,13 @@ or for a different backend) without touching `presentation/`.
 
 ### Non-Functional Requirements
 
-- [ ] `flutter analyze` passes with zero warnings (very_good_analysis +
+- [x] `flutter analyze` passes with zero warnings (very_good_analysis +
       riverpod_lint)
 - [ ] Test coverage ≥ 80% across all features
 - [ ] App launches in < 3 seconds on mid-range device
 - [ ] Offline-to-online sync completes within 5 seconds for < 100 records
-- [ ] iOS minimum deployment target: 13.0
-- [ ] Android compileSdkVersion: 34
+- [x] iOS minimum deployment target: 13.0
+- [x] Android compileSdkVersion: 34
 
 ### Quality Gates
 
@@ -900,7 +900,7 @@ or for a different backend) without touching `presentation/`.
 - [ ] No manual try/catch for logging (ProviderObserver handles it)
 - [ ] No hardcoded asset strings or user-facing strings
 - [ ] README enables clone-to-running in < 30 minutes (with service accounts)
-- [ ] AGENTS.md updated to reflect Material 3 decision
+- [x] AGENTS.md updated to reflect Material 3 decision
 
 ## Dependencies & Prerequisites
 
@@ -948,7 +948,7 @@ security, secret management, and mobile app security.
 The plan mentions RLS for `notes` and `subscriptions`, but the policies need to
 be more specific and comprehensive:
 
-- [ ] **Write explicit RLS policies per operation** — do not rely on a single
+- [x] **Write explicit RLS policies per operation** — do not rely on a single
       `USING (auth.uid() = user_id)` for all operations. Define separate
       `SELECT`, `INSERT`, `UPDATE`, `DELETE` policies:
   - `INSERT` policy must include `WITH CHECK (auth.uid() = user_id)` to prevent
@@ -956,19 +956,19 @@ be more specific and comprehensive:
   - `UPDATE` policy should use both `USING` and `WITH CHECK` to prevent
     ownership transfer via update
   - `DELETE` policy must use `USING (auth.uid() = user_id)`
-- [ ] **Add RLS to the `subscriptions` table for all operations** — the plan
+- [x] **Add RLS to the `subscriptions` table for all operations** — the plan
       says "users can only read" but the webhook Edge Function writes via
       service role key. Ensure: `SELECT` policy for authenticated users, no
       `INSERT`/`UPDATE`/`DELETE` for authenticated role (only service role can
       write)
-- [ ] **Verify RLS is enabled and forced** — add to each migration:
+- [x] **Verify RLS is enabled and forced** — add to each migration:
       `ALTER TABLE <table> ENABLE ROW LEVEL SECURITY;` and
       `ALTER TABLE <table> FORCE ROW LEVEL SECURITY;` (FORCE ensures RLS applies
       even to table owners in non-superuser contexts)
 - [ ] **Test RLS policies explicitly** — add integration tests that attempt
       cross-user data access and confirm denial. Example: User A creates a note,
       User B queries notes, User B should get zero results
-- [ ] **Audit PowerSync sync rules** — ensure PowerSync Sync Streams filtering
+- [x] **Audit PowerSync sync rules** — ensure PowerSync Sync Streams filtering
       mirrors RLS policies. A misconfigured sync rule could leak data to other
       users even if RLS is correct on direct queries
 
@@ -976,7 +976,7 @@ be more specific and comprehensive:
 
 **STRIDE category:** Spoofing, Tampering
 
-- [ ] **Secure JWT storage** — Supabase Flutter SDK stores tokens in
+- [x] **Secure JWT storage** — Supabase Flutter SDK stores tokens in
       `SharedPreferences` (Android) / `NSUserDefaults` (iOS) by default.
       Override with `flutter_secure_storage` to use Android Keystore / iOS
       Keychain:
@@ -990,7 +990,7 @@ be more specific and comprehensive:
     ),
   );
   ```
-- [ ] **Handle token refresh race conditions** — PowerSync's
+- [x] **Handle token refresh race conditions** — PowerSync's
       `fetchCredentials()` gets the JWT from the current Supabase session. Add
       logic to check `session.expiresAt` and call
       `supabase.auth.refreshSession()` if the token expires within 60 seconds,
@@ -1002,7 +1002,7 @@ be more specific and comprehensive:
       re-send" but this must be enforced server-side via Supabase rate limiting
       config, not just client-side UI. Verify Supabase project auth settings
       have appropriate rate limits configured
-- [ ] **Clear auth state completely on sign-out** — in addition to
+- [x] **Clear auth state completely on sign-out** — in addition to
       `PowerSync.disconnectAndClear()`, ensure: Supabase session cleared,
       RevenueCat logged out (`Purchases.logOut()`), OneSignal logged out
       (`OneSignal.logout()`), any in-memory cached user data nullified. The plan
@@ -1015,27 +1015,27 @@ be more specific and comprehensive:
 
 The RevenueCat webhook handler is a critical attack surface:
 
-- [ ] **Verify webhook authorization token** — RevenueCat sends an
+- [x] **Verify webhook authorization token** — RevenueCat sends an
       `Authorization` header with each webhook. The Edge Function must:
   1. Read the `Authorization` header from the request
   2. Compare against the webhook auth key stored in Supabase Edge Function
      secrets (`Deno.env.get('REVENUECAT_WEBHOOK_AUTH_KEY')`)
   3. Return 401 immediately if the token does not match
   4. Use constant-time string comparison to prevent timing attacks
-- [ ] **Validate request payload schema** — parse and validate the webhook body
+- [x] **Validate request payload schema** — parse and validate the webhook body
       against expected RevenueCat event types. Reject unexpected event types or
       malformed payloads with 400
-- [ ] **Use Supabase service role key in Edge Functions** — the Edge Function
+- [x] **Use Supabase service role key in Edge Functions** — the Edge Function
       must use the service role key (not the anon key) to bypass RLS and write
       to the `subscriptions` table. Store as `SUPABASE_SERVICE_ROLE_KEY` secret
       via `supabase secrets set`
-- [ ] **Idempotency** — RevenueCat may send duplicate webhooks. Use the event
+- [x] **Idempotency** — RevenueCat may send duplicate webhooks. Use the event
       `id` field as an idempotency key (upsert on `id` or maintain a processed
       events log)
-- [ ] **Log all webhook events** — for non-repudiation, log every webhook
+- [x] **Log all webhook events** — for non-repudiation, log every webhook
       invocation (event type, app_user_id, timestamp) to a separate
       `webhook_audit_log` table. This enables debugging subscription disputes
-- [ ] **Apply the same pattern to the OneSignal trigger Edge Function** —
+- [x] **Apply the same pattern to the OneSignal trigger Edge Function** —
       authenticate incoming requests and validate payloads
 
 ### SEC-4: Secret & Configuration Management
@@ -1046,49 +1046,49 @@ The RevenueCat webhook handler is a critical attack surface:
       `config_prod.json` in `.gitignore` which is good, but also ensure
       `config_staging.json` is gitignored. Only `config_dev.json` (pointing to
       local Supabase) should be committed
-- [ ] **Document which keys are safe to embed in the app** — Supabase anon key,
+- [x] **Document which keys are safe to embed in the app** — Supabase anon key,
       PostHog API key, OneSignal App ID, and RevenueCat public API key are
       designed to be public (embedded in client apps). Make this explicit in
       README to prevent confusion
-- [ ] **Never embed service role keys in the Flutter app** — the Supabase
+- [x] **Never embed service role keys in the Flutter app** — the Supabase
       service role key must only exist in Edge Function secrets. Add a comment
       or lint rule to flag any reference to service role keys in `lib/`
-- [ ] **Supabase Edge Function secrets** — store via `supabase secrets set`:
+- [x] **Supabase Edge Function secrets** — store via `supabase secrets set`:
   - `REVENUECAT_WEBHOOK_AUTH_KEY`
   - `SUPABASE_SERVICE_ROLE_KEY` (for Edge Functions to bypass RLS)
   - `ONESIGNAL_REST_API_KEY` (for server-to-server push triggers)
-- [ ] **GitHub Actions secrets** — store all production config values as
+- [x] **GitHub Actions secrets** — store all production config values as
       repository secrets, inject via `--dart-define-from-file` using a generated
       config file in CI. Never echo secrets in workflow logs
-- [ ] **Add a pre-commit hook or CI check** — scan for accidentally committed
+- [x] **Add a pre-commit hook or CI check** — scan for accidentally committed
       secrets (API keys, DSNs) using a tool like `gitleaks` or `trufflehog`
 
 ### SEC-5: Mobile App Security
 
 **STRIDE category:** Tampering, Information Disclosure
 
-- [ ] **Certificate pinning** — document how template users should add TLS
+- [x] **Certificate pinning** — document how template users should add TLS
       certificate pinning for production domains (options:
       `http_certificate_pinning`, Network Security Config on Android, ATS on
       iOS). Not wired in the starter kit — production-specific
-- [ ] **Root/jailbreak detection** — document as a production recommendation for
+- [x] **Root/jailbreak detection** — document as a production recommendation for
       apps handling payments (options: `flutter_jailbreak_detection`,
       `freerasp`). Not wired in the starter kit — production-specific
-- [ ] **Code obfuscation** — add
+- [x] **Code obfuscation** — add
       `--obfuscate --split-debug-info=build/debug-info` to the release build
       commands in Fastlane and CI workflows. This is a Flutter best practice but
       must be explicitly configured
 - [ ] **Disable debug logging in release** — ensure Sentry and PostHog are not
       sending debug-level data in production. Use `kReleaseMode` or the
       environment config to gate log verbosity
-- [ ] **Secure the local SQLite database** — document that PowerSync's local
+- [x] **Secure the local SQLite database** — document that PowerSync's local
       SQLite stores user data in plaintext. For sensitive apps, SQLCipher
       encryption is recommended. Production-specific — not wired in starter kit
-- [ ] **Deep link validation** — the Supabase auth callback URL scheme
+- [x] **Deep link validation** — the Supabase auth callback URL scheme
       (`io.supabase.flutter://callback`) can be intercepted by malicious apps.
       Use Android App Links (verified) and iOS Universal Links instead of custom
       URL schemes for production deployments. Document this upgrade path
-- [ ] **Prevent screenshot/screen recording on sensitive screens** — document as
+- [x] **Prevent screenshot/screen recording on sensitive screens** — document as
       optional: `FLAG_SECURE` (Android) and screen capture prevention (iOS) for
       OTP verification and paywall screens. Production-specific
 
@@ -1096,18 +1096,18 @@ The RevenueCat webhook handler is a critical attack surface:
 
 **STRIDE category:** Denial of Service, Tampering
 
-- [ ] **Rate limit Edge Functions** — Supabase Edge Functions do not have
+- [x] **Rate limit Edge Functions** — Supabase Edge Functions do not have
       built-in per-endpoint rate limiting. Implement rate limiting in the
       function code (e.g., track request counts per IP in a database table or
       use Supabase's `pg_net`) or place an upstream API gateway in front
-- [ ] **Input validation in Edge Functions** — validate and sanitize all inputs
+- [x] **Input validation in Edge Functions** — validate and sanitize all inputs
       in `revenuecat-webhook/index.ts` and `onesignal-trigger/index.ts`. Never
       trust client-supplied data. Use Zod or a similar TypeScript schema
       validation library in the Deno Edge Functions
 - [ ] **CORS configuration** — Edge Functions should have strict CORS policies.
       Webhook endpoints should reject browser-based requests entirely (no
       `Access-Control-Allow-Origin` header)
-- [ ] **Error responses** — never return stack traces or internal error details
+- [x] **Error responses** — never return stack traces or internal error details
       to callers. Return generic error messages (e.g.,
       `{ "error": "Bad request" }`) and log details server-side
 
@@ -1115,14 +1115,14 @@ The RevenueCat webhook handler is a critical attack surface:
 
 **STRIDE category:** Repudiation
 
-- [ ] **Sentry PII scrubbing** — the plan enables `sendDefaultPii: true` in
+- [x] **Sentry PII scrubbing** — the plan enables `sendDefaultPii: true` in
       Sentry. Review what PII this includes (IP addresses, user agents, request
       headers). For GDPR compliance, consider setting this to `false` or
       configuring `beforeSend` to scrub sensitive fields
 - [ ] **Audit logging** — add a database trigger or application-level logging
       for security-relevant events: failed auth attempts, RLS policy violations
       (via Supabase logs), subscription status changes, admin actions
-- [ ] **Alerting** — configure Sentry alerts for unusual patterns: spike in auth
+- [x] **Alerting** — configure Sentry alerts for unusual patterns: spike in auth
       failures (credential stuffing), unusual error rates in Edge Functions
       (webhook abuse), elevated 403 responses (RLS policy denials)
 
@@ -1155,7 +1155,7 @@ To integrate these recommendations into the existing implementation phases:
 - [x] `docs/ARCHITECTURE.md` — Detailed architecture decisions and patterns
 - [ ] Inline code comments where logic isn't self-evident (initialization order,
       sync connector)
-- [ ] Each Edge Function includes a header comment explaining its purpose and
+- [x] Each Edge Function includes a header comment explaining its purpose and
       trigger
 
 ## Sources & References

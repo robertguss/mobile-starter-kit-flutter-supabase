@@ -49,6 +49,10 @@ supabase secrets set \
   ONESIGNAL_APP_API_KEY=...
 ```
 
+See
+[docs/SECURITY.md](/Users/robertguss/.config/superpowers/worktrees/flutter-supabase-starter-kit/codex-flutter-supabase-starter-kit/docs/SECURITY.md)
+for the full embedded-vs-server-only key split and mobile hardening guidance.
+
 ## PowerSync Sync Streams
 
 Apply `powersync/sync_rules.yaml` to the target PowerSync project before
@@ -94,3 +98,15 @@ supabase functions deploy onesignal-trigger
 - Reapply `powersync/sync_rules.yaml` from the last known good commit in the
   PowerSync dashboard.
 - Re-run a notes sync smoke test before reopening rollout.
+
+## Monitoring
+
+Before and after a release, watch:
+
+- Sentry startup traces for regression against the startup target
+- RevenueCat webhook failures and duplicate-event handling
+- OneSignal trigger 5xx responses
+- auth failure spikes and unusual sign-out/reset rates
+
+Treat secret-scan failures, repeated webhook authorization errors, and rollout
+signing/config mismatches as no-go signals.

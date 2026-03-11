@@ -1,3 +1,9 @@
+/**
+ * RevenueCat webhook processor.
+ *
+ * Auth model: server-to-server only. Requests must present the exact shared
+ * authorization token configured in `REVENUECAT_WEBHOOK_AUTH_KEY`.
+ */
 import { errorResponse, successResponse } from "../_shared/responses.ts";
 import { getServiceRoleClient } from "../_shared/supabase-client.ts";
 import {
