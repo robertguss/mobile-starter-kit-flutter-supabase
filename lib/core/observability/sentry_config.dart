@@ -19,6 +19,7 @@ class SentryConfig {
       (options) {
         options
           ..dsn = env.sentryDsn
+          ..tracesSampleRate = 1.0
           ..sendDefaultPii = false
           ..attachScreenshot = false
           ..enableAppLifecycleBreadcrumbs = true;

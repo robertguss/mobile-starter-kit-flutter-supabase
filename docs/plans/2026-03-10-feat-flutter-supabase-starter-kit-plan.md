@@ -757,7 +757,7 @@ YAML):
 
 - [ ] Add `integration_test/offline_sync_test.dart` — end-to-end test for
       offline create → reconnect → verify sync completes
-- [ ] Add startup performance measurement in `main.dart` using `Stopwatch` that
+- [x] Add startup performance measurement in `main.dart` using `Stopwatch` that
       logs initialization phase durations to Sentry as performance transactions
       (validates <3s non-functional requirement)
 

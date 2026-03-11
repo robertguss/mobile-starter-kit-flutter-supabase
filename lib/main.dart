@@ -10,6 +10,7 @@ import 'package:flutter_supabase_starter/core/env/env.dart';
 import 'package:flutter_supabase_starter/core/observability/posthog_config.dart';
 import 'package:flutter_supabase_starter/core/observability/provider_observer.dart';
 import 'package:flutter_supabase_starter/core/observability/sentry_config.dart';
+import 'package:flutter_supabase_starter/core/observability/startup_metrics.dart';
 import 'package:flutter_supabase_starter/core/providers/database_providers.dart';
 import 'package:flutter_supabase_starter/core/router/app_router.dart';
 import 'package:flutter_supabase_starter/core/session/session_manager.dart';
@@ -26,6 +27,7 @@ import 'package:flutter_supabase_starter/features/subscription/presentation/subs
 import 'package:flutter_supabase_starter/i18n/strings.g.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,55 +44,79 @@ Future<void> main() async {
   await SentryConfig.initialize(
     env: env,
     appRunner: () async {
+      final startupMetrics = StartupMetrics.start();
+
       await runZonedGuarded(
         () async {
-          final supabaseClient = await AppSupabaseClient.initialize(env);
-          final powerSyncClient = AppPowerSyncClient();
-          final powerSyncDatabase = await powerSyncClient.open();
-          final sessionManager = buildSessionManager(
-            powerSyncClient: powerSyncClient,
-            database: powerSyncDatabase,
-            supabaseClient: supabaseClient,
-            powerSyncUrl: env.powerSyncUrl,
-          );
-          final authRepository = SupabaseAuthRepository(
-            supabaseClient: supabaseClient,
-            sessionManager: sessionManager,
-          );
-          final noteRepository = PowerSyncNoteRepository(
-            database: powerSyncDatabase,
-            currentUserId: () => supabaseClient.auth.currentUser?.id,
-          );
-          final notificationRepository = OneSignalNotificationRepository();
-          final subscriptionRepository = RevenueCatSubscriptionRepository();
-
-          runApp(
-            TranslationProvider(
-              child: ProviderScope(
-                observers: const [AppProviderObserver()],
-                overrides: [
-                  authRepositoryProvider.overrideWithValue(authRepository),
-                  noteRepositoryProvider.overrideWithValue(noteRepository),
-                  notificationRepositoryProvider.overrideWithValue(
-                    notificationRepository,
-                  ),
-                  subscriptionRepositoryProvider.overrideWithValue(
-                    subscriptionRepository,
-                  ),
-                  sessionManagerProvider.overrideWithValue(sessionManager),
-                  supabaseClientProvider.overrideWithValue(supabaseClient),
-                  powerSyncDatabaseProvider.overrideWithValue(
-                    powerSyncDatabase,
-                  ),
-                ],
-                child: const MyApp(),
+          try {
+            final supabaseClient = await startupMetrics.measurePhase(
+              'supabase_init',
+              () => AppSupabaseClient.initialize(env),
+            );
+            final powerSyncClient = AppPowerSyncClient();
+            final powerSyncDatabase = await startupMetrics.measurePhase(
+              'powersync_open',
+              powerSyncClient.open,
+            );
+            final sessionManager = await startupMetrics.measurePhase(
+              'dependency_wiring',
+              () => buildSessionManager(
+                powerSyncClient: powerSyncClient,
+                database: powerSyncDatabase,
+                supabaseClient: supabaseClient,
+                powerSyncUrl: env.powerSyncUrl,
               ),
-            ),
-          );
+            );
+            final authRepository = SupabaseAuthRepository(
+              supabaseClient: supabaseClient,
+              sessionManager: sessionManager,
+            );
+            final noteRepository = PowerSyncNoteRepository(
+              database: powerSyncDatabase,
+              currentUserId: () => supabaseClient.auth.currentUser?.id,
+            );
+            final notificationRepository = OneSignalNotificationRepository();
+            final subscriptionRepository = RevenueCatSubscriptionRepository();
 
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            unawaited(_initializeNonCriticalServices(env));
-          });
+            await startupMetrics.measurePhase('run_app', () {
+              runApp(
+                TranslationProvider(
+                  child: ProviderScope(
+                    observers: const [AppProviderObserver()],
+                    overrides: [
+                      authRepositoryProvider.overrideWithValue(authRepository),
+                      noteRepositoryProvider.overrideWithValue(noteRepository),
+                      notificationRepositoryProvider.overrideWithValue(
+                        notificationRepository,
+                      ),
+                      subscriptionRepositoryProvider.overrideWithValue(
+                        subscriptionRepository,
+                      ),
+                      sessionManagerProvider.overrideWithValue(sessionManager),
+                      supabaseClientProvider.overrideWithValue(supabaseClient),
+                      powerSyncDatabaseProvider.overrideWithValue(
+                        powerSyncDatabase,
+                      ),
+                    ],
+                    child: const MyApp(),
+                  ),
+                ),
+              );
+            });
+
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              unawaited(() async {
+                startupMetrics.recordFirstFrame();
+                await startupMetrics.finish();
+                await _initializeNonCriticalServices(env);
+              }());
+            });
+          } catch (error, stackTrace) {
+            await startupMetrics.finish(
+              status: const SpanStatus.internalError(),
+            );
+            Error.throwWithStackTrace(error, stackTrace);
+          }
         },
         (error, stackTrace) {},
       );
