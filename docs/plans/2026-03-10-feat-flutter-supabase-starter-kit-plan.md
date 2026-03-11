@@ -695,7 +695,7 @@ serves as architecture reference.
 - [x] `lib/features/notifications/presentation/notification_settings_screen.dart`
 - [ ] iOS: Add Notification Service Extension target (OneSignal requirement — 7
       steps)
-- [ ] `supabase/functions/onesignal-trigger/index.ts` — Edge Function to send
+- [x] `supabase/functions/onesignal-trigger/index.ts` — Edge Function to send
       notifications
 
 **Success criteria:** Paywall shows offerings, webhook processes events, push
