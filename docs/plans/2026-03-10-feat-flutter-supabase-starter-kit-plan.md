@@ -693,7 +693,7 @@ serves as architecture reference.
   - Handle permission denied gracefully
   - `OneSignal.login(userId)` called after auth
 - [x] `lib/features/notifications/presentation/notification_settings_screen.dart`
-- [ ] iOS: Add Notification Service Extension target (OneSignal requirement — 7
+- [x] iOS: Add Notification Service Extension target (OneSignal requirement — 7
       steps)
 - [x] `supabase/functions/onesignal-trigger/index.ts` — Edge Function to send
       notifications
@@ -756,7 +756,7 @@ YAML):
 
 **Testing:**
 
-- [ ] Add `integration_test/offline_sync_test.dart` — end-to-end test for
+- [x] Add `integration_test/offline_sync_test.dart` — end-to-end test for
       offline create → reconnect → verify sync completes
 - [x] Add startup performance measurement in `main.dart` using `Stopwatch` that
       logs initialization phase durations to Sentry as performance transactions
