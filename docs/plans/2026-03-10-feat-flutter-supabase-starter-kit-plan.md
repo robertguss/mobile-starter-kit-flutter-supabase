@@ -656,13 +656,13 @@ serves as architecture reference.
 
 **Supabase Edge Functions — shared infrastructure:**
 
-- [ ] `supabase/functions/_shared/supabase-client.ts` — shared Supabase client
+- [x] `supabase/functions/_shared/supabase-client.ts` — shared Supabase client
       with service_role key
-- [ ] `supabase/functions/_shared/types.ts` — discriminated union types for
+- [x] `supabase/functions/_shared/types.ts` — discriminated union types for
       RevenueCat events
-- [ ] `supabase/functions/_shared/responses.ts` — standard JSON error/success
+- [x] `supabase/functions/_shared/responses.ts` — standard JSON error/success
       response helpers
-- [ ] `supabase/functions/import_map.json` — pin dependency versions
+- [x] `supabase/functions/import_map.json` — pin dependency versions
 
 **Supabase Edge Function — RevenueCat webhook:**
 
