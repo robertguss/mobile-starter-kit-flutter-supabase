@@ -412,7 +412,7 @@ all working.
       handlers in `main.dart`
 - [x] Wrap each non-critical init step with try/catch — only Supabase +
       PowerSync are fatal
-- [ ] Implement `lib/main.dart` with full initialization order (see above)
+- [x] Implement `lib/main.dart` with full initialization order (see above)
 - [x] Run `dart run build_runner build` — verify all generators work
 - [x] Write tests for router redirects
 - [x] Verify: app launches with theme applied, routes to login screen
@@ -474,9 +474,9 @@ working.
     within 60 seconds (SEC-2)
   - `uploadData()` — batch CRUD uploads using `getCrudBatch(limit: 100)` to
     prevent OOM on large offline queues (performance P0)
-- [ ] Implement `lib/core/database/powersync_client.dart` — database singleton
+- [x] Implement `lib/core/database/powersync_client.dart` — database singleton
       with schema
-- [ ] Handle sign-out: **clear local PowerSync SQLite data** when user signs out
+- [x] Handle sign-out: **clear local PowerSync SQLite data** when user signs out
       (privacy requirement)
 - [x] Write `supabase/seed.sql` — development seed data
 - [x] Write tests for PowerSync connector (mock Supabase auth for credentials)
@@ -493,33 +493,33 @@ schema defined, connector tested.
 **TDD Sequence (per AGENTS.md):**
 
 1. **Domain first:**
-   - [ ] `lib/features/auth/domain/user_model.dart` — User entity (id, email,
+   - [x] `lib/features/auth/domain/user_model.dart` — User entity (id, email,
          createdAt)
-   - [ ] `lib/features/auth/domain/auth_repository.dart` — Abstract interface:
+   - [x] `lib/features/auth/domain/auth_repository.dart` — Abstract interface:
      - `Future<void> sendOtp(String email)`
      - `Future<User> verifyOtp(String email, String token)`
      - `Future<void> signOut()`
      - `Stream<User?> authStateChanges()`
 
 2. **Mocks + Tests:**
-   - [ ] `test/helpers/pump_app.dart` — shared helper that wraps widgets in
+   - [x] `test/helpers/pump_app.dart` — shared helper that wraps widgets in
          `MaterialApp` + `ProviderScope` with all required overrides for widget
          tests (reused across all features)
-   - [ ] `test/features/auth/domain/mock_auth_repository.dart` — mocktail mock
-   - [ ] `test/features/auth/presentation/auth_controller_test.dart`:
+   - [x] `test/features/auth/domain/mock_auth_repository.dart` — mocktail mock
+   - [x] `test/features/auth/presentation/auth_controller_test.dart`:
      - Test: sendOtp triggers loading → success states
      - Test: sendOtp with invalid email → error state
      - Test: verifyOtp with valid token → authenticated
      - Test: verifyOtp with expired/wrong OTP → error with message
      - Test: signOut clears state and local data
      - Test: auth state stream updates on sign-in/sign-out
-   - [ ] `test/features/auth/presentation/login_screen_test.dart`:
+   - [x] `test/features/auth/presentation/login_screen_test.dart`:
      - Test: renders email input and submit button
      - Test: shows validation error for empty/invalid email
      - Test: shows loading state while sending OTP
      - Test: navigates to OTP screen on success
      - Test: shows error snackbar on failure
-   - [ ] `test/features/auth/presentation/otp_verify_screen_test.dart`:
+   - [x] `test/features/auth/presentation/otp_verify_screen_test.dart`:
      - Test: renders OTP input field
      - Test: shows loading during verification
      - Test: navigates to home on success
@@ -527,7 +527,7 @@ schema defined, connector tested.
      - Test: resend OTP button with cooldown timer
 
 3. **Implementation:**
-   - [ ] `lib/features/auth/data/supabase_auth_repository.dart`:
+   - [x] `lib/features/auth/data/supabase_auth_repository.dart`:
      - `sendOtp` → `supabase.auth.signInWithOtp(email: email)`
      - `verifyOtp` →
        `supabase.auth.verifyOTP(email: email, token: token, type: OtpType.email)`
@@ -546,11 +546,11 @@ schema defined, connector tested.
      - Clear any in-memory cached user data
 
 4. **Presentation:**
-   - [ ] `lib/features/auth/presentation/auth_controller.dart` — `@riverpod`
+   - [x] `lib/features/auth/presentation/auth_controller.dart` — `@riverpod`
          annotated controller
-   - [ ] `lib/features/auth/presentation/login_screen.dart` — Material 3 themed,
+   - [x] `lib/features/auth/presentation/login_screen.dart` — Material 3 themed,
          email input, submit
-   - [ ] `lib/features/auth/presentation/otp_verify_screen.dart` — OTP input,
+   - [x] `lib/features/auth/presentation/otp_verify_screen.dart` — OTP input,
          verify, resend
 
 **Auth error states to handle:**

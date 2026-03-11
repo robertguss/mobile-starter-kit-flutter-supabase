@@ -15,6 +15,7 @@ targets:
             - lib/core/providers/**.dart
             - lib/core/router/**.dart
             - lib/core/session/**.dart
+            - lib/features/**/domain/**.dart
             - lib/features/**/presentation/**.dart
       flutter_gen_runner:
         generate_for:

@@ -4,12 +4,18 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_supabase_starter/core/database/powersync_client.dart';
+import 'package:flutter_supabase_starter/core/database/supabase_client.dart';
 import 'package:flutter_supabase_starter/core/env/env.dart';
 import 'package:flutter_supabase_starter/core/observability/posthog_config.dart';
 import 'package:flutter_supabase_starter/core/observability/provider_observer.dart';
 import 'package:flutter_supabase_starter/core/observability/sentry_config.dart';
+import 'package:flutter_supabase_starter/core/providers/database_providers.dart';
 import 'package:flutter_supabase_starter/core/router/app_router.dart';
+import 'package:flutter_supabase_starter/core/session/session_manager.dart';
 import 'package:flutter_supabase_starter/core/theme/app_theme.dart';
+import 'package:flutter_supabase_starter/features/auth/data/supabase_auth_repository.dart';
+import 'package:flutter_supabase_starter/features/auth/domain/auth_repository.dart';
 import 'package:flutter_supabase_starter/i18n/strings.g.dart';
 
 Future<void> main() async {
@@ -29,15 +35,42 @@ Future<void> main() async {
     appRunner: () async {
       await runZonedGuarded(
         () async {
-          await _initializeNonCriticalServices(env);
+          final supabaseClient = await AppSupabaseClient.initialize(env);
+          final powerSyncDatabase = await AppPowerSyncClient().open(
+            supabaseClient: supabaseClient,
+            powerSyncUrl: env.powerSyncUrl,
+          );
+          final sessionManager = SessionManager(
+            onTeardown: () async {
+              await powerSyncDatabase.disconnectAndClear();
+              await supabaseClient.auth.signOut();
+            },
+          );
+          final authRepository = SupabaseAuthRepository(
+            supabaseClient: supabaseClient,
+            sessionManager: sessionManager,
+          );
+
           runApp(
             TranslationProvider(
-              child: const ProviderScope(
-                observers: [AppProviderObserver()],
-                child: MyApp(),
+              child: ProviderScope(
+                observers: const [AppProviderObserver()],
+                overrides: [
+                  authRepositoryProvider.overrideWithValue(authRepository),
+                  sessionManagerProvider.overrideWithValue(sessionManager),
+                  supabaseClientProvider.overrideWithValue(supabaseClient),
+                  powerSyncDatabaseProvider.overrideWithValue(
+                    powerSyncDatabase,
+                  ),
+                ],
+                child: const MyApp(),
               ),
             ),
           );
+
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            unawaited(_initializeNonCriticalServices(env));
+          });
         },
         (error, stackTrace) {},
       );

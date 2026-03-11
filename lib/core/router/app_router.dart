@@ -72,7 +72,9 @@ GoRouter appRouter(Ref ref) {
       ),
       GoRoute(
         path: OtpVerifyScreen.routePath,
-        builder: (context, state) => const OtpVerifyScreen(),
+        builder: (context, state) => OtpVerifyScreen(
+          email: state.uri.queryParameters['email'] ?? '',
+        ),
       ),
       GoRoute(
         path: NotesListScreen.routePath,

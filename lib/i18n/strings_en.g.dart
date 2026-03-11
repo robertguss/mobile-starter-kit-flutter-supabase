@@ -71,14 +71,35 @@ class TranslationsAuthEn {
 	/// en: 'Email'
 	String get emailLabel => 'Email';
 
+	/// en: 'you@example.com'
+	String get emailHint => 'you@example.com';
+
+	/// en: 'Enter a valid email address.'
+	String get invalidEmailError => 'Enter a valid email address.';
+
+	/// en: 'We could not send a code right now.'
+	String get sendOtpError => 'We could not send a code right now.';
+
 	/// en: 'Send code'
 	String get sendOtp => 'Send code';
 
 	/// en: 'Verification code'
 	String get otpLabel => 'Verification code';
 
+	/// en: '123456'
+	String get otpHint => '123456';
+
+	/// en: 'That code is invalid or expired.'
+	String get otpError => 'That code is invalid or expired.';
+
 	/// en: 'Verify code'
 	String get verifyOtp => 'Verify code';
+
+	/// en: 'Resend code'
+	String get resendOtp => 'Resend code';
+
+	/// en: 'Resend in 30s'
+	String get resendCooldown => 'Resend in 30s';
 
 	/// en: 'Sign out'
 	String get signOut => 'Sign out';
@@ -154,9 +175,16 @@ extension on Translations {
 		return switch (path) {
 			'app.title' => 'Flutter Supabase Starter',
 			'auth.emailLabel' => 'Email',
+			'auth.emailHint' => 'you@example.com',
+			'auth.invalidEmailError' => 'Enter a valid email address.',
+			'auth.sendOtpError' => 'We could not send a code right now.',
 			'auth.sendOtp' => 'Send code',
 			'auth.otpLabel' => 'Verification code',
+			'auth.otpHint' => '123456',
+			'auth.otpError' => 'That code is invalid or expired.',
 			'auth.verifyOtp' => 'Verify code',
+			'auth.resendOtp' => 'Resend code',
+			'auth.resendCooldown' => 'Resend in 30s',
 			'auth.signOut' => 'Sign out',
 			'notes.title' => 'Notes',
 			'notes.emptyState' => 'No notes yet.',

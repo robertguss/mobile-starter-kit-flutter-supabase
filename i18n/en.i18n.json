@@ -4,9 +4,16 @@
   },
   "auth": {
     "emailLabel": "Email",
+    "emailHint": "you@example.com",
+    "invalidEmailError": "Enter a valid email address.",
+    "sendOtpError": "We could not send a code right now.",
     "sendOtp": "Send code",
     "otpLabel": "Verification code",
+    "otpHint": "123456",
+    "otpError": "That code is invalid or expired.",
     "verifyOtp": "Verify code",
+    "resendOtp": "Resend code",
+    "resendCooldown": "Resend in 30s",
     "signOut": "Sign out"
   },
   "notes": {
