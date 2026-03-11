@@ -16,6 +16,8 @@ import 'package:flutter_supabase_starter/core/session/session_manager.dart';
 import 'package:flutter_supabase_starter/core/theme/app_theme.dart';
 import 'package:flutter_supabase_starter/features/auth/data/supabase_auth_repository.dart';
 import 'package:flutter_supabase_starter/features/auth/domain/auth_repository.dart';
+import 'package:flutter_supabase_starter/features/notes/data/powersync_note_repository.dart';
+import 'package:flutter_supabase_starter/features/notes/domain/note_repository.dart';
 import 'package:flutter_supabase_starter/i18n/strings.g.dart';
 
 Future<void> main() async {
@@ -48,6 +50,10 @@ Future<void> main() async {
             supabaseClient: supabaseClient,
             sessionManager: sessionManager,
           );
+          final noteRepository = PowerSyncNoteRepository(
+            database: powerSyncDatabase,
+            currentUserId: () => supabaseClient.auth.currentUser?.id,
+          );
 
           runApp(
             TranslationProvider(
@@ -55,6 +61,7 @@ Future<void> main() async {
                 observers: const [AppProviderObserver()],
                 overrides: [
                   authRepositoryProvider.overrideWithValue(authRepository),
+                  noteRepositoryProvider.overrideWithValue(noteRepository),
                   sessionManagerProvider.overrideWithValue(sessionManager),
                   supabaseClientProvider.overrideWithValue(supabaseClient),
                   powerSyncDatabaseProvider.overrideWithValue(

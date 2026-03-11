@@ -579,9 +579,9 @@ indicators, sync status.
 **TDD Sequence:**
 
 1. **Domain:**
-   - [ ] `lib/features/notes/domain/note_model.dart` — Note entity (id, userId,
+   - [x] `lib/features/notes/domain/note_model.dart` — Note entity (id, userId,
          title, body, createdAt, updatedAt)
-   - [ ] `lib/features/notes/domain/note_repository.dart` — Abstract interface:
+   - [x] `lib/features/notes/domain/note_repository.dart` — Abstract interface:
      - `Future<List<Note>> getNotes({int limit = 50, int offset = 0})`
      - `Stream<List<Note>> watchNotes({int limit = 50})` — paginated from day
        one (performance P1)
@@ -591,42 +591,42 @@ indicators, sync status.
      - `Future<void> deleteNote(String id)`
 
 2. **Mocks + Tests:**
-   - [ ] `test/features/notes/domain/mock_note_repository.dart`
-   - [ ] `test/features/notes/presentation/notes_controller_test.dart`:
+   - [x] `test/features/notes/domain/mock_note_repository.dart`
+   - [x] `test/features/notes/presentation/notes_controller_test.dart`:
      - Test: watchNotes streams note list
      - Test: createNote adds to list
      - Test: updateNote modifies existing
      - Test: deleteNote removes from list
      - Test: operations work offline (mocked)
-   - [ ] `test/features/notes/presentation/notes_list_screen_test.dart`:
+   - [x] `test/features/notes/presentation/notes_list_screen_test.dart`:
      - Test: renders list of notes
      - Test: empty state shown when no notes
      - Test: pull-to-refresh triggers sync
      - Test: FAB navigates to create
      - Test: sync status indicator shows connectivity state
-   - [ ] `test/features/notes/data/powersync_note_repository_test.dart`:
+   - [x] `test/features/notes/data/powersync_note_repository_test.dart`:
      - Test: CRUD operations produce correct SQL
 
 3. **Implementation:**
-   - [ ] `lib/features/notes/data/powersync_note_repository.dart` — raw SQL via
+   - [x] `lib/features/notes/data/powersync_note_repository.dart` — raw SQL via
          PowerSync
-   - [ ] All reads/writes target local PowerSync SQLite (offline-first per
+   - [x] All reads/writes target local PowerSync SQLite (offline-first per
          AGENTS.md)
-   - [ ] `lib/features/notes/presentation/notes_controller.dart` — `@riverpod`
+   - [x] `lib/features/notes/presentation/notes_controller.dart` — `@riverpod`
          with `AsyncValue`
-   - [ ] `lib/features/notes/presentation/notes_list_screen.dart` — Material 3
+   - [x] `lib/features/notes/presentation/notes_list_screen.dart` — Material 3
          list
    - [ ] `lib/features/notes/presentation/note_detail_screen.dart` — view/edit
          with auto-save
-   - [ ] `lib/features/notes/presentation/widgets/note_card.dart` — list item
+   - [x] `lib/features/notes/presentation/widgets/note_card.dart` — list item
          widget
-   - [ ] `lib/features/notes/presentation/widgets/sync_status_indicator.dart` —
+   - [x] `lib/features/notes/presentation/widgets/sync_status_indicator.dart` —
          shows online/offline/syncing
-   - [ ] Use `ListView.builder` (not `ListView`) for notes list with
+   - [x] Use `ListView.builder` (not `ListView`) for notes list with
          `itemExtent` or `prototypeItem` for scroll performance
-   - [ ] Use `const` constructors on all stateless widgets (NoteCard, etc.) to
+   - [x] Use `const` constructors on all stateless widgets (NoteCard, etc.) to
          prevent unnecessary rebuilds
-   - [ ] Add pull-to-refresh on notes list using `RefreshIndicator`
+   - [x] Add pull-to-refresh on notes list using `RefreshIndicator`
    - [ ] Add golden tests for design system widgets (NoteCard,
          SyncStatusIndicator) to catch visual regressions
 

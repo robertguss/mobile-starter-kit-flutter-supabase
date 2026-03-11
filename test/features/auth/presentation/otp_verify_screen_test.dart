@@ -1,20 +1,24 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_supabase_starter/core/providers/connectivity_provider.dart';
 import 'package:flutter_supabase_starter/features/auth/domain/auth_repository.dart';
 import 'package:flutter_supabase_starter/features/auth/domain/user_model.dart';
 import 'package:flutter_supabase_starter/features/auth/presentation/login_screen.dart';
 import 'package:flutter_supabase_starter/features/auth/presentation/otp_verify_screen.dart';
+import 'package:flutter_supabase_starter/features/notes/domain/note_repository.dart';
 import 'package:flutter_supabase_starter/features/notes/presentation/notes_list_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../helpers/pump_app.dart';
+import '../../notes/domain/mock_note_repository.dart';
 import '../domain/mock_auth_repository.dart';
 
 void main() {
   late MockAuthRepository repository;
+  late MockNoteRepository noteRepository;
 
   final signedInUser = UserModel(
     id: 'user-123',
@@ -24,9 +28,19 @@ void main() {
 
   setUp(() {
     repository = MockAuthRepository();
+    noteRepository = MockNoteRepository();
     when(repository.authStateChanges).thenAnswer((_) => const Stream.empty());
     when(() => repository.sendOtp(any())).thenAnswer((_) async {});
     when(repository.signOut).thenAnswer((_) async {});
+    when(
+      () => noteRepository.watchNotes(limit: any(named: 'limit')),
+    ).thenAnswer((_) => const Stream.empty());
+    when(
+      () => noteRepository.getNotes(
+        limit: any(named: 'limit'),
+        offset: any(named: 'offset'),
+      ),
+    ).thenAnswer((_) async => const []);
   });
 
   GoRouter buildRouter() {
@@ -55,7 +69,13 @@ void main() {
     final container = await pumpApp(
       tester,
       router: buildRouter(),
-      overrides: [authRepositoryProvider.overrideWithValue(repository)],
+      overrides: [
+        authRepositoryProvider.overrideWithValue(repository),
+        connectivityStatusProvider.overrideWith(
+          (ref) => Stream.value(ConnectivityStatus.online),
+        ),
+        noteRepositoryProvider.overrideWithValue(noteRepository),
+      ],
     );
     addTearDown(container.dispose);
 
@@ -72,7 +92,13 @@ void main() {
     final container = await pumpApp(
       tester,
       router: buildRouter(),
-      overrides: [authRepositoryProvider.overrideWithValue(repository)],
+      overrides: [
+        authRepositoryProvider.overrideWithValue(repository),
+        connectivityStatusProvider.overrideWith(
+          (ref) => Stream.value(ConnectivityStatus.online),
+        ),
+        noteRepositoryProvider.overrideWithValue(noteRepository),
+      ],
     );
     addTearDown(container.dispose);
 
@@ -94,7 +120,13 @@ void main() {
     final container = await pumpApp(
       tester,
       router: buildRouter(),
-      overrides: [authRepositoryProvider.overrideWithValue(repository)],
+      overrides: [
+        authRepositoryProvider.overrideWithValue(repository),
+        connectivityStatusProvider.overrideWith(
+          (ref) => Stream.value(ConnectivityStatus.online),
+        ),
+        noteRepositoryProvider.overrideWithValue(noteRepository),
+      ],
     );
     addTearDown(container.dispose);
 
@@ -113,7 +145,13 @@ void main() {
     final container = await pumpApp(
       tester,
       router: buildRouter(),
-      overrides: [authRepositoryProvider.overrideWithValue(repository)],
+      overrides: [
+        authRepositoryProvider.overrideWithValue(repository),
+        connectivityStatusProvider.overrideWith(
+          (ref) => Stream.value(ConnectivityStatus.online),
+        ),
+        noteRepositoryProvider.overrideWithValue(noteRepository),
+      ],
     );
     addTearDown(container.dispose);
 
@@ -129,7 +167,13 @@ void main() {
     final container = await pumpApp(
       tester,
       router: buildRouter(),
-      overrides: [authRepositoryProvider.overrideWithValue(repository)],
+      overrides: [
+        authRepositoryProvider.overrideWithValue(repository),
+        connectivityStatusProvider.overrideWith(
+          (ref) => Stream.value(ConnectivityStatus.online),
+        ),
+        noteRepositoryProvider.overrideWithValue(noteRepository),
+      ],
     );
     addTearDown(container.dispose);
 

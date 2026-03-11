@@ -1,16 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_supabase_starter/core/providers/connectivity_provider.dart';
 import 'package:flutter_supabase_starter/core/router/app_router.dart';
 import 'package:flutter_supabase_starter/features/auth/presentation/login_screen.dart';
 import 'package:flutter_supabase_starter/features/auth/presentation/otp_verify_screen.dart';
+import 'package:flutter_supabase_starter/features/notes/domain/note_repository.dart';
 import 'package:flutter_supabase_starter/features/notes/presentation/note_detail_screen.dart';
 import 'package:flutter_supabase_starter/features/notes/presentation/notes_list_screen.dart';
 import 'package:flutter_supabase_starter/features/notifications/presentation/notification_settings_screen.dart';
 import 'package:flutter_supabase_starter/features/subscription/presentation/paywall_screen.dart';
 import 'package:flutter_supabase_starter/i18n/strings.g.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+import '../../features/notes/domain/mock_note_repository.dart';
 
 void main() {
+  late MockNoteRepository noteRepository;
+
+  setUp(() {
+    noteRepository = MockNoteRepository();
+    when(
+      () => noteRepository.watchNotes(limit: any(named: 'limit')),
+    ).thenAnswer((_) => const Stream.empty());
+    when(
+      () => noteRepository.getNotes(
+        limit: any(named: 'limit'),
+        offset: any(named: 'offset'),
+      ),
+    ).thenAnswer((_) async => const []);
+  });
+
   Future<ProviderContainer> pumpRouter(
     WidgetTester tester, {
     required AuthRouteStateNotifier authNotifier,
@@ -19,6 +39,10 @@ void main() {
     final container = ProviderContainer(
       overrides: [
         authRouteStateProvider.overrideWith((ref) => authNotifier),
+        connectivityStatusProvider.overrideWith(
+          (ref) => Stream.value(ConnectivityStatus.online),
+        ),
+        noteRepositoryProvider.overrideWithValue(noteRepository),
         routerInitialLocationProvider.overrideWith((ref) => initialLocation),
       ],
     );

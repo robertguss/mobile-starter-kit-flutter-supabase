@@ -118,6 +118,18 @@ class TranslationsNotesEn {
 
 	/// en: 'No notes yet.'
 	String get emptyState => 'No notes yet.';
+
+	/// en: 'Untitled note'
+	String get newNoteTitle => 'Untitled note';
+
+	/// en: 'New note'
+	String get create => 'New note';
+
+	/// en: 'Online'
+	String get onlineStatus => 'Online';
+
+	/// en: 'Offline'
+	String get offlineStatus => 'Offline';
 }
 
 // Path: settings
@@ -188,6 +200,10 @@ extension on Translations {
 			'auth.signOut' => 'Sign out',
 			'notes.title' => 'Notes',
 			'notes.emptyState' => 'No notes yet.',
+			'notes.newNoteTitle' => 'Untitled note',
+			'notes.create' => 'New note',
+			'notes.onlineStatus' => 'Online',
+			'notes.offlineStatus' => 'Offline',
 			'settings.title' => 'Settings',
 			'settings.notifications' => 'Notification settings',
 			'subscription.title' => 'Paywall',

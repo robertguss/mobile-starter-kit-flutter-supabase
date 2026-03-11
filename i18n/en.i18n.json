@@ -18,7 +18,11 @@
   },
   "notes": {
     "title": "Notes",
-    "emptyState": "No notes yet."
+    "emptyState": "No notes yet.",
+    "newNoteTitle": "Untitled note",
+    "create": "New note",
+    "onlineStatus": "Online",
+    "offlineStatus": "Offline"
   },
   "settings": {
     "title": "Settings",
