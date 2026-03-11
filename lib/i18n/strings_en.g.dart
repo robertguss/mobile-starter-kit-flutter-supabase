@@ -164,8 +164,26 @@ class TranslationsSubscriptionEn {
 	/// en: 'Paywall'
 	String get title => 'Paywall';
 
-	/// en: 'Subscription paywall'
-	String get description => 'Subscription paywall';
+	/// en: 'Choose a subscription plan to unlock premium features.'
+	String get description => 'Choose a subscription plan to unlock premium features.';
+
+	/// en: 'Pro is active'
+	String get active => 'Pro is active';
+
+	/// en: 'No active subscription'
+	String get inactive => 'No active subscription';
+
+	/// en: 'Renews on'
+	String get expiresAtLabel => 'Renews on';
+
+	/// en: 'No subscription packages are available right now.'
+	String get noPackages => 'No subscription packages are available right now.';
+
+	/// en: 'Subscribe'
+	String get subscribe => 'Subscribe';
+
+	/// en: 'Restore purchases'
+	String get restorePurchases => 'Restore purchases';
 }
 
 // Path: common
@@ -215,7 +233,13 @@ extension on Translations {
 			'settings.title' => 'Settings',
 			'settings.notifications' => 'Notification settings',
 			'subscription.title' => 'Paywall',
-			'subscription.description' => 'Subscription paywall',
+			'subscription.description' => 'Choose a subscription plan to unlock premium features.',
+			'subscription.active' => 'Pro is active',
+			'subscription.inactive' => 'No active subscription',
+			'subscription.expiresAtLabel' => 'Renews on',
+			'subscription.noPackages' => 'No subscription packages are available right now.',
+			'subscription.subscribe' => 'Subscribe',
+			'subscription.restorePurchases' => 'Restore purchases',
 			'common.loading' => 'Loading...',
 			'common.retry' => 'Retry',
 			_ => null,

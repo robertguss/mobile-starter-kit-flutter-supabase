@@ -641,17 +641,17 @@ serves as architecture reference.
 
 **Subscriptions (TDD):**
 
-- [ ] `lib/features/subscription/domain/subscription_model.dart`
-- [ ] `lib/features/subscription/domain/subscription_repository.dart` — abstract
+- [x] `lib/features/subscription/domain/subscription_model.dart`
+- [x] `lib/features/subscription/domain/subscription_repository.dart` — abstract
       interface
-- [ ] `test/features/subscription/domain/mock_subscription_repository.dart`
-- [ ] `test/features/subscription/presentation/subscription_controller_test.dart`
-- [ ] `lib/features/subscription/data/revenuecat_subscription_repository.dart`:
+- [x] `test/features/subscription/domain/mock_subscription_repository.dart`
+- [x] `test/features/subscription/presentation/subscription_controller_test.dart`
+- [x] `lib/features/subscription/data/revenuecat_subscription_repository.dart`:
   - Check entitlements on app launch
   - Listen to `Purchases.addCustomerInfoUpdateListener`
   - Expose subscription status as Riverpod provider
-- [ ] `lib/features/subscription/presentation/subscription_controller.dart`
-- [ ] `lib/features/subscription/presentation/paywall_screen.dart` — RevenueCat
+- [x] `lib/features/subscription/presentation/subscription_controller.dart`
+- [x] `lib/features/subscription/presentation/paywall_screen.dart` — RevenueCat
       paywall UI
 
 **Supabase Edge Functions — shared infrastructure:**

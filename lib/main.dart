@@ -18,7 +18,12 @@ import 'package:flutter_supabase_starter/features/auth/data/supabase_auth_reposi
 import 'package:flutter_supabase_starter/features/auth/domain/auth_repository.dart';
 import 'package:flutter_supabase_starter/features/notes/data/powersync_note_repository.dart';
 import 'package:flutter_supabase_starter/features/notes/domain/note_repository.dart';
+import 'package:flutter_supabase_starter/features/subscription/data/revenuecat_subscription_repository.dart';
+import 'package:flutter_supabase_starter/features/subscription/domain/subscription_repository.dart';
+import 'package:flutter_supabase_starter/features/subscription/presentation/subscription_controller.dart';
 import 'package:flutter_supabase_starter/i18n/strings.g.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -54,6 +59,7 @@ Future<void> main() async {
             database: powerSyncDatabase,
             currentUserId: () => supabaseClient.auth.currentUser?.id,
           );
+          final subscriptionRepository = RevenueCatSubscriptionRepository();
 
           runApp(
             TranslationProvider(
@@ -62,6 +68,9 @@ Future<void> main() async {
                 overrides: [
                   authRepositoryProvider.overrideWithValue(authRepository),
                   noteRepositoryProvider.overrideWithValue(noteRepository),
+                  subscriptionRepositoryProvider.overrideWithValue(
+                    subscriptionRepository,
+                  ),
                   sessionManagerProvider.overrideWithValue(sessionManager),
                   supabaseClientProvider.overrideWithValue(supabaseClient),
                   powerSyncDatabaseProvider.overrideWithValue(
@@ -89,6 +98,24 @@ Future<void> _initializeNonCriticalServices(AppEnv env) async {
   } on Object {
     // Non-critical services should not block startup.
   }
+
+  if (env.hasRevenueCatConfig) {
+    try {
+      await Purchases.configure(
+        PurchasesConfiguration(env.revenueCatPublicSdkKey),
+      );
+    } on Object {
+      // Paywall functionality degrades gracefully if RevenueCat is unavailable.
+    }
+  }
+
+  if (env.hasOneSignalConfig) {
+    try {
+      await OneSignal.initialize(env.oneSignalAppId);
+    } on Object {
+      // Push setup should not block startup.
+    }
+  }
 }
 
 class MyApp extends ConsumerWidget {
@@ -96,6 +123,7 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(subscriptionControllerProvider);
     final router = ref.watch(appRouterProvider);
 
     return MaterialApp.router(

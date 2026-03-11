@@ -32,7 +32,13 @@
   },
   "subscription": {
     "title": "Paywall",
-    "description": "Subscription paywall"
+    "description": "Choose a subscription plan to unlock premium features.",
+    "active": "Pro is active",
+    "inactive": "No active subscription",
+    "expiresAtLabel": "Renews on",
+    "noPackages": "No subscription packages are available right now.",
+    "subscribe": "Subscribe",
+    "restorePurchases": "Restore purchases"
   },
   "common": {
     "loading": "Loading...",

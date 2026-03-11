@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 class AppEnv {
   const AppEnv({
     required this.supabaseUrl,
@@ -49,4 +51,21 @@ class AppEnv {
 
   bool get hasPosthogConfig =>
       posthogApiKey.isNotEmpty && posthogHost.isNotEmpty;
+
+  bool get hasRevenueCatConfig => revenueCatPublicSdkKey.isNotEmpty;
+
+  bool get hasOneSignalConfig => oneSignalAppId.isNotEmpty;
+
+  String get revenueCatPublicSdkKey {
+    if (kIsWeb) {
+      return '';
+    }
+
+    return switch (defaultTargetPlatform) {
+      TargetPlatform.android => revenueCatGooglePublicSdkKey,
+      TargetPlatform.iOS || TargetPlatform.macOS =>
+        revenueCatApplePublicSdkKey,
+      _ => '',
+    };
+  }
 }
