@@ -54,6 +54,8 @@ SessionManager buildSessionManager({
       );
     },
     onTeardown: () async {
+      // Clear local state before logging SDKs out so the next signed-in user
+      // never sees cached rows from the previous session.
       await powerSyncClient.clear(database);
       await (onRevenueCatLogout ?? _revenueCatLogout)();
       await (onOneSignalLogout ?? OneSignal.logout)();

@@ -1,4 +1,4 @@
-.PHONY: setup codegen watch test analyze edge-test supabase-start supabase-reset
+.PHONY: setup codegen watch test analyze edge-test rls-test supabase-start supabase-reset
 
 setup:
 	flutter pub get
@@ -21,6 +21,9 @@ edge-test:
 	deno test --import-map supabase/functions/import_map.json \
 		supabase/functions/revenuecat-webhook/handler_test.ts \
 		supabase/functions/onesignal-trigger/index_test.ts
+
+rls-test:
+	./tool/rls_test.sh
 
 supabase-start:
 	supabase start

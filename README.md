@@ -109,7 +109,9 @@ make setup
 make codegen
 make analyze
 make test
+flutter test --coverage
 make edge-test
+make rls-test
 make supabase-start
 make supabase-reset
 ```
@@ -149,8 +151,13 @@ Run these before pushing:
 ```bash
 make analyze
 make test
+flutter test --coverage
 make edge-test
+make rls-test
 ```
+
+`make rls-test` also verifies the `security_audit_log` trigger coverage for
+subscription changes in a disposable local Supabase instance.
 
 For release readiness, also review
 [docs/DEPLOYMENT.md](/Users/robertguss/.config/superpowers/worktrees/flutter-supabase-starter-kit/codex-flutter-supabase-starter-kit/docs/DEPLOYMENT.md)

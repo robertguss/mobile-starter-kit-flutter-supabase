@@ -57,6 +57,10 @@ environments. Do not commit JSON configs with real values. The workflows expect
 the secrets documented in
 [docs/DEPLOYMENT.md](/Users/robertguss/.config/superpowers/worktrees/flutter-supabase-starter-kit/codex-flutter-supabase-starter-kit/docs/DEPLOYMENT.md).
 
+The repo-level `.gitignore` excludes `config/config_prod.json` and
+`config/config_staging.json` so example runtime config can stay committed
+without leaking release values.
+
 ### CI Secret Scanning
 
 The PR workflow runs `gitleaks` on every pull request. Treat a secret-scan
@@ -71,10 +75,23 @@ Supabase sessions are persisted through
 which uses `flutter_secure_storage`. Do not switch back to plaintext local
 storage.
 
+### OTP rate limiting
+
+Local Supabase auth defaults are constrained in
+[supabase/config.toml](/Users/robertguss/.config/superpowers/worktrees/flutter-supabase-starter-kit/codex-flutter-supabase-starter-kit/supabase/config.toml)
+through `auth.rate_limit` and `auth.email.max_frequency`. Keep equivalent or
+stricter limits in hosted environments before shipping OTP auth.
+
 ### Code obfuscation
 
 Release workflows already build with `--obfuscate --split-debug-info=...`.
 Keep those flags enabled for Play Store and App Store releases.
+
+### Release logging
+
+PostHog is initialized with `debug = false` in
+[lib/core/observability/posthog_config.dart](/Users/robertguss/.config/superpowers/worktrees/flutter-supabase-starter-kit/codex-flutter-supabase-starter-kit/lib/core/observability/posthog_config.dart).
+Keep analytics SDK debug logging disabled in release builds.
 
 ### Local SQLite protection
 
@@ -136,6 +153,18 @@ The current functions are intended for server-to-server use and do not return
 permissive CORS headers. If you expose a function to browser clients later, add
 an explicit allowlist rather than `*`.
 
+## Local Verification
+
+Run the repeatable local RLS check with:
+
+```bash
+make rls-test
+```
+
+This starts a disposable local Supabase database, applies the migrations, and
+asserts that cross-user reads and writes are denied for `notes` and
+`subscriptions`.
+
 ## Observability
 
 ### Sentry PII
@@ -147,8 +176,16 @@ Re-review those settings before enabling user identifiers or replay features.
 
 ### Audit logging
 
-RevenueCat webhook processing is recorded in `webhook_audit_log`. Extend the
-same pattern for other irreversible or billing-affecting backend operations.
+RevenueCat webhook processing is recorded in `webhook_audit_log`. Subscription
+table inserts, updates, and deletes are also captured in
+`security_audit_log` via a database trigger, and `make rls-test` verifies that
+authenticated users cannot see those audit rows.
+
+Keep the remaining platform-level audit trails in the infrastructure layer:
+
+- Supabase Auth logs for failed OTP requests and rate-limit violations
+- Postgres/Supabase logs for RLS denials
+- Sentry alerts and traces for unusual runtime error spikes
 
 ### Alerting
 

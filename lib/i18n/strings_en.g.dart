@@ -136,6 +136,9 @@ class TranslationsNotesEn {
 
 	/// en: 'Offline'
 	String get offlineStatus => 'Offline';
+
+	/// en: 'Syncing...'
+	String get syncingStatus => 'Syncing...';
 }
 
 // Path: settings
@@ -242,6 +245,7 @@ extension on Translations {
 			'notes.bodyLabel' => 'Body',
 			'notes.onlineStatus' => 'Online',
 			'notes.offlineStatus' => 'Offline',
+			'notes.syncingStatus' => 'Syncing...',
 			'settings.title' => 'Settings',
 			'settings.notifications' => 'Notification settings',
 			'settings.notificationsEnabled' => 'Notifications are enabled for this device.',

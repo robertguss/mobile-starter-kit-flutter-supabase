@@ -78,7 +78,7 @@ void main() {
                     stream: Stream.value(ConnectivityStatus.offline),
                   ),
                   const _IndicatorPreview(
-                    label: 'Loading',
+                    label: 'Syncing',
                     stream: Stream.empty(),
                   ),
                 ],

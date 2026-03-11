@@ -18,7 +18,7 @@ class SyncStatusIndicator extends ConsumerWidget {
         },
       ),
       error: (error, stackTrace) => Text(context.t.notes.offlineStatus),
-      loading: () => Text(context.t.common.loading),
+      loading: () => Text(context.t.notes.syncingStatus),
     );
   }
 }

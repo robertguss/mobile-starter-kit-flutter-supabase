@@ -24,7 +24,8 @@
     "titleLabel": "Title",
     "bodyLabel": "Body",
     "onlineStatus": "Online",
-    "offlineStatus": "Offline"
+    "offlineStatus": "Offline",
+    "syncingStatus": "Syncing..."
   },
   "settings": {
     "title": "Settings",

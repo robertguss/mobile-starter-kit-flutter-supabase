@@ -872,21 +872,21 @@ or for a different backend) without touching `presentation/`.
 
 - [ ] Email OTP authentication works end-to-end (send, verify, sign out)
 - [ ] Notes CRUD works fully offline and syncs when online
-- [ ] Sync status indicator accurately shows online/offline/syncing states
+- [x] Sync status indicator accurately shows online/offline/syncing states
 - [ ] RevenueCat paywall displays offerings and processes purchases
 - [ ] RevenueCat webhook correctly updates subscription status in Supabase
 - [ ] OneSignal push notifications deliver on both iOS and Android
-- [ ] Sign-out clears all local PowerSync data
-- [ ] Supabase RLS policies prevent cross-user data access
-- [ ] All user-facing strings are in slang i18n files
-- [ ] All asset references use flutter_gen `Assets` class
-- [ ] Light and dark Material 3 themes work correctly
+- [x] Sign-out clears all local PowerSync data
+- [x] Supabase RLS policies prevent cross-user data access
+- [x] All user-facing strings are in slang i18n files
+- [x] All asset references use flutter_gen `Assets` class
+- [x] Light and dark Material 3 themes work correctly
 
 ### Non-Functional Requirements
 
 - [x] `flutter analyze` passes with zero warnings (very_good_analysis +
       riverpod_lint)
-- [ ] Test coverage ≥ 80% across all features
+- [x] Test coverage ≥ 80% across all features
 - [ ] App launches in < 3 seconds on mid-range device
 - [ ] Offline-to-online sync completes within 5 seconds for < 100 records
 - [x] iOS minimum deployment target: 13.0
@@ -895,10 +895,10 @@ or for a different backend) without touching `presentation/`.
 ### Quality Gates
 
 - [ ] All TDD sequences followed (domain → mocks → tests → data → presentation)
-- [ ] No direct Supabase queries outside Auth/Edge Functions/Storage (per
+- [x] No direct Supabase queries outside Auth/Edge Functions/Storage (per
       AGENTS.md)
-- [ ] No manual try/catch for logging (ProviderObserver handles it)
-- [ ] No hardcoded asset strings or user-facing strings
+- [x] No manual try/catch for logging (ProviderObserver handles it)
+- [x] No hardcoded asset strings or user-facing strings
 - [ ] README enables clone-to-running in < 30 minutes (with service accounts)
 - [x] AGENTS.md updated to reflect Material 3 decision
 
@@ -965,7 +965,7 @@ be more specific and comprehensive:
       `ALTER TABLE <table> ENABLE ROW LEVEL SECURITY;` and
       `ALTER TABLE <table> FORCE ROW LEVEL SECURITY;` (FORCE ensures RLS applies
       even to table owners in non-superuser contexts)
-- [ ] **Test RLS policies explicitly** — add integration tests that attempt
+- [x] **Test RLS policies explicitly** — add integration tests that attempt
       cross-user data access and confirm denial. Example: User A creates a note,
       User B queries notes, User B should get zero results
 - [x] **Audit PowerSync sync rules** — ensure PowerSync Sync Streams filtering
@@ -998,7 +998,7 @@ be more specific and comprehensive:
 - [ ] **Invalidate all sessions on password/email change** — if the template
       adds account management later, ensure `signOut()` is called on all devices
       (Supabase supports global sign-out)
-- [ ] **OTP brute-force protection** — the plan mentions "max 3 attempts, then
+- [x] **OTP brute-force protection** — the plan mentions "max 3 attempts, then
       re-send" but this must be enforced server-side via Supabase rate limiting
       config, not just client-side UI. Verify Supabase project auth settings
       have appropriate rate limits configured
@@ -1042,7 +1042,7 @@ The RevenueCat webhook handler is a critical attack surface:
 
 **STRIDE category:** Information Disclosure
 
-- [ ] **Never commit production or staging secrets** — the plan has
+- [x] **Never commit production or staging secrets** — the plan has
       `config_prod.json` in `.gitignore` which is good, but also ensure
       `config_staging.json` is gitignored. Only `config_dev.json` (pointing to
       local Supabase) should be committed
@@ -1078,7 +1078,7 @@ The RevenueCat webhook handler is a critical attack surface:
       `--obfuscate --split-debug-info=build/debug-info` to the release build
       commands in Fastlane and CI workflows. This is a Flutter best practice but
       must be explicitly configured
-- [ ] **Disable debug logging in release** — ensure Sentry and PostHog are not
+- [x] **Disable debug logging in release** — ensure Sentry and PostHog are not
       sending debug-level data in production. Use `kReleaseMode` or the
       environment config to gate log verbosity
 - [x] **Secure the local SQLite database** — document that PowerSync's local
@@ -1104,7 +1104,7 @@ The RevenueCat webhook handler is a critical attack surface:
       in `revenuecat-webhook/index.ts` and `onesignal-trigger/index.ts`. Never
       trust client-supplied data. Use Zod or a similar TypeScript schema
       validation library in the Deno Edge Functions
-- [ ] **CORS configuration** — Edge Functions should have strict CORS policies.
+- [x] **CORS configuration** — Edge Functions should have strict CORS policies.
       Webhook endpoints should reject browser-based requests entirely (no
       `Access-Control-Allow-Origin` header)
 - [x] **Error responses** — never return stack traces or internal error details
@@ -1119,7 +1119,7 @@ The RevenueCat webhook handler is a critical attack surface:
       Sentry. Review what PII this includes (IP addresses, user agents, request
       headers). For GDPR compliance, consider setting this to `false` or
       configuring `beforeSend` to scrub sensitive fields
-- [ ] **Audit logging** — add a database trigger or application-level logging
+- [x] **Audit logging** — add a database trigger or application-level logging
       for security-relevant events: failed auth attempts, RLS policy violations
       (via Supabase logs), subscription status changes, admin actions
 - [x] **Alerting** — configure Sentry alerts for unusual patterns: spike in auth
@@ -1153,7 +1153,7 @@ To integrate these recommendations into the existing implementation phases:
 
 - [x] `README.md` — Quick start, architecture overview, feature guide
 - [x] `docs/ARCHITECTURE.md` — Detailed architecture decisions and patterns
-- [ ] Inline code comments where logic isn't self-evident (initialization order,
+- [x] Inline code comments where logic isn't self-evident (initialization order,
       sync connector)
 - [x] Each Edge Function includes a header comment explaining its purpose and
       trigger

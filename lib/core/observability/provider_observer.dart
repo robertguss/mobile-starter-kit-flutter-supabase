@@ -3,8 +3,19 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+typedef ProviderExceptionCapture =
+    Future<SentryId> Function(
+      Object exception, {
+      dynamic stackTrace,
+      ScopeCallback? withScope,
+    });
+
 final class AppProviderObserver extends ProviderObserver {
-  const AppProviderObserver();
+  const AppProviderObserver({
+    ProviderExceptionCapture captureException = Sentry.captureException,
+  }) : _captureException = captureException;
+
+  final ProviderExceptionCapture _captureException;
 
   @override
   void providerDidFail(
@@ -13,7 +24,7 @@ final class AppProviderObserver extends ProviderObserver {
     StackTrace stackTrace,
   ) {
     unawaited(
-      Sentry.captureException(
+      _captureException(
         error,
         stackTrace: stackTrace,
         withScope: (scope) {

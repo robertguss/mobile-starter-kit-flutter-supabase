@@ -112,6 +112,9 @@ Implemented functions:
   - Rejects anonymous or invalid user IDs
   - Upserts subscription state
   - Tracks processing in `webhook_audit_log`
+- `subscriptions` table trigger
+  - Records inserts, updates, and deletes in `security_audit_log`
+  - Preserves a database-level trail for subscription state changes
 - `onesignal-trigger`
   - Verifies an internal auth header
   - Validates notification payloads

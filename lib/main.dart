@@ -29,6 +29,10 @@ import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+typedef RevenueCatConfigurer =
+    Future<void> Function(PurchasesConfiguration configuration);
+typedef OneSignalInitializer = Future<void> Function(String appId);
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -49,6 +53,8 @@ Future<void> main() async {
       await runZonedGuarded(
         () async {
           try {
+            // Keep the boot order explicit so auth-backed services come up
+            // before any repositories or UI start reading from them.
             final supabaseClient = await startupMetrics.measurePhase(
               'supabase_init',
               () => AppSupabaseClient.initialize(env),
@@ -108,7 +114,8 @@ Future<void> main() async {
               unawaited(() async {
                 startupMetrics.recordFirstFrame();
                 await startupMetrics.finish();
-                await _initializeNonCriticalServices(env);
+                // These SDKs should never block first paint or auth routing.
+                await initializeNonCriticalServices(env);
               }());
             });
           } catch (error, stackTrace) {
@@ -124,16 +131,21 @@ Future<void> main() async {
   );
 }
 
-Future<void> _initializeNonCriticalServices(AppEnv env) async {
+Future<void> initializeNonCriticalServices(
+  AppEnv env, {
+  Future<void> Function(AppEnv env)? initializePosthog,
+  RevenueCatConfigurer? configureRevenueCat,
+  OneSignalInitializer? initializeOneSignal,
+}) async {
   try {
-    await PosthogConfig.initialize(env);
+    await (initializePosthog ?? PosthogConfig.initialize)(env);
   } on Object {
     // Non-critical services should not block startup.
   }
 
   if (env.hasRevenueCatConfig) {
     try {
-      await Purchases.configure(
+      await (configureRevenueCat ?? Purchases.configure)(
         PurchasesConfiguration(env.revenueCatPublicSdkKey),
       );
     } on Object {
@@ -143,7 +155,7 @@ Future<void> _initializeNonCriticalServices(AppEnv env) async {
 
   if (env.hasOneSignalConfig) {
     try {
-      await OneSignal.initialize(env.oneSignalAppId);
+      await (initializeOneSignal ?? OneSignal.initialize)(env.oneSignalAppId);
     } on Object {
       // Push setup should not block startup.
     }

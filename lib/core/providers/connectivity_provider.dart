@@ -5,7 +5,7 @@ part 'connectivity_provider.g.dart';
 
 enum ConnectivityStatus { online, offline }
 
-ConnectivityStatus _mapConnectivity(List<ConnectivityResult> results) {
+ConnectivityStatus mapConnectivityResults(List<ConnectivityResult> results) {
   if (results.contains(ConnectivityResult.none) || results.isEmpty) {
     return ConnectivityStatus.offline;
   }
@@ -17,6 +17,8 @@ ConnectivityStatus _mapConnectivity(List<ConnectivityResult> results) {
 Stream<ConnectivityStatus> connectivityStatus(Ref ref) async* {
   final connectivity = Connectivity();
 
-  yield _mapConnectivity(await connectivity.checkConnectivity());
-  yield* connectivity.onConnectivityChanged.map(_mapConnectivity).distinct();
+  yield mapConnectivityResults(await connectivity.checkConnectivity());
+  yield* connectivity.onConnectivityChanged
+      .map(mapConnectivityResults)
+      .distinct();
 }
