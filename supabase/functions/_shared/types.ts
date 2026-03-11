@@ -9,6 +9,12 @@ export type RevenueCatEventType =
   (typeof HANDLED_REVENUECAT_EVENT_TYPES)[number];
 
 export type RevenueCatEnvironment = "PRODUCTION" | "SANDBOX";
+export type RevenueCatPeriodType =
+  | "TRIAL"
+  | "INTRO"
+  | "NORMAL"
+  | "PROMOTIONAL"
+  | "PREPAID";
 
 export interface RevenueCatBaseEvent {
   readonly id: string;
@@ -22,6 +28,7 @@ export interface RevenueCatSubscriptionEvent extends RevenueCatBaseEvent {
   readonly type: RevenueCatEventType;
   readonly expiration_at_ms: number | null;
   readonly environment: RevenueCatEnvironment;
+  readonly period_type?: RevenueCatPeriodType;
 }
 
 export interface RevenueCatWebhookPayload {

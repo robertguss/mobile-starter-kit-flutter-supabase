@@ -666,7 +666,7 @@ serves as architecture reference.
 
 **Supabase Edge Function — RevenueCat webhook:**
 
-- [ ] `supabase/functions/revenuecat-webhook/handler.ts` — extracted for
+- [x] `supabase/functions/revenuecat-webhook/handler.ts` — extracted for
       testability:
   - Verify `Authorization` bearer token with **constant-time comparison**
     (crypto.subtle HMAC — see
@@ -680,9 +680,9 @@ serves as architecture reference.
   - Idempotency: deduplicate on RevenueCat event `id`
   - Log to `webhook_audit_log` table for non-repudiation
   - Return generic error messages (never leak stack traces)
-- [ ] `supabase/functions/revenuecat-webhook/index.ts` — `Deno.serve()` entry
+- [x] `supabase/functions/revenuecat-webhook/index.ts` — `Deno.serve()` entry
       point (NOT deprecated `serve` import)
-- [ ] **Tests:** `supabase/functions/revenuecat-webhook/handler_test.ts` — Deno
+- [x] **Tests:** `supabase/functions/revenuecat-webhook/handler_test.ts` — Deno
       test runner (TDD gap identified by TypeScript reviewer)
 
 **Push Notifications:**
