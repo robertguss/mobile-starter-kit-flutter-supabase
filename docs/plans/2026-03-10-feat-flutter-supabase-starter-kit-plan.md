@@ -709,7 +709,7 @@ automation.
 **GitHub Actions** (see `docs/plans/2026-03-10-cicd-recommendations.md` for full
 YAML):
 
-- [ ] `.github/workflows/test.yml`:
+- [x] `.github/workflows/test.yml`:
   - Trigger: PR to main, with concurrency control (cancel stale runs)
   - Steps: checkout, Flutter setup (with SDK caching via
     `subosito/flutter-action`), pub cache (keyed on `pubspec.lock`),
@@ -717,7 +717,7 @@ YAML):
     `flutter analyze`, `flutter test --coverage`
   - Coverage threshold gate (80% minimum)
   - Test randomization for flaky test detection
-- [ ] `.github/workflows/build-android.yml`:
+- [x] `.github/workflows/build-android.yml`:
   - Trigger: tag push (not every push to main)
   - Steps: checkout, Flutter setup, Java 17 + Gradle caching, **generate
     config_prod.json from GitHub Secrets**,
@@ -725,7 +725,7 @@ YAML):
     upload to Google Play via Fastlane
   - Protected environment with required reviewers
   - Always() cleanup of keystore artifacts
-- [ ] `.github/workflows/build-ios.yml`:
+- [x] `.github/workflows/build-ios.yml`:
   - Trigger: tag push
   - Runner: `macos-14` (Apple Silicon — 2-3x faster)
   - Steps: checkout, Flutter setup, CocoaPods caching (keyed on `Podfile.lock`),
@@ -734,7 +734,7 @@ YAML):
     `flutter build ipa --dart-define-from-file=config_prod.json --obfuscate --split-debug-info=build/debug-info`,
     upload to TestFlight
   - App Store Connect API key auth (avoids 2FA issues)
-- [ ] `.github/workflows/deploy-supabase.yml` (NEW — identified as critical
+- [x] `.github/workflows/deploy-supabase.yml` (NEW — identified as critical
       gap):
   - Deploy Edge Functions: `supabase functions deploy revenuecat-webhook` and
     `onesignal-trigger`
@@ -748,10 +748,10 @@ YAML):
 
 **Fastlane:**
 
-- [ ] `fastlane/Fastfile` — lanes for `test`, `build_android`, `build_ios`,
+- [x] `fastlane/Fastfile` — lanes for `test`, `build_android`, `build_ios`,
       `deploy_android`, `deploy_ios`
-- [ ] `fastlane/Appfile` — placeholder app identifiers
-- [ ] `fastlane/Matchfile` — code signing configuration
+- [x] `fastlane/Appfile` — placeholder app identifiers
+- [x] `fastlane/Matchfile` — code signing configuration
 
 **Testing:**
 
