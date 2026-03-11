@@ -1,0 +1,64 @@
+Running `(cd /Users/robertguss/.pub-cache/hosted/pub.dev/objective_c-9.3.0/; ANDROID_HOME=/Users/robertguss/Library/Android/sdk TMPDIR=/var/folders/f8/ft7ygqg92pj8qh0rwplbw2x80000gn/T/ PATH=/Users/robertguss/.codex/tmp/arg0/codex-arg0WEmVzz:/Users/robertguss/.local/bin:/Users/robertguss/.local/bin:/Users/robertguss/.opencode/bin:/Users/robertguss/.qlty/bin:/Users/robertguss/.antigravity/antigravity/bin:/Users/robertguss/Library/pnpm:/Users/robertguss//opt/homebrew/bin:/Users/robertguss//opt/homebrew/Cellar/erlang/28.1/lib/erlang/erts-16.1/bin:/Users/robertguss/Library/Application Support/Herd/bin/:/Users/robertguss/.local/share/mise/installs/node/24.13.0/bin:/Users/robertguss/.local/share/mise/installs/ruby/3.4.5/bin:/Users/robertguss/go/bin:/Users/robertguss/bin:/opt/homebrew/opt/libpq/bin:/usr/local/sbin:/usr/local/opt/libpq/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/opt/pmk/env/global/bin:/Library/Apple/usr/bin:/Library/TeX/texbin:/Applications/Little Snitch.app/Contents/Components:/Applications/VMware Fusion.app/Contents/Public:/Applications/quarto/bin:/Users/robertguss/.cargo/bin:/Users/robertguss/.local/bin:/Applications/WezTerm.app/Contents/MacOS:/Users/robertguss/.pub-cache/bin:/Users/robertguss/Library/Android/sdk/platform-tools:/Users/robertguss/Library/Android/sdk/cmdline-tools/latest/bin:/Applications/Codex.app/Contents/Resources HOME=/Users/robertguss /opt/homebrew/Caskroom/flutter/3.29.3/flutter/bin/cache/dart-sdk/bin/dart --packages=/Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/package_config.json /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/objective_c/9fb02c5622/hook.dill --config=/Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/objective_c/9fb02c5622/input.json )`.
+INFO: 2026-03-11 10:10:00.066285: Running `which clang`.
+
+INFO: 2026-03-11 10:10:00.080539: Running `/usr/bin/clang --version`.
+
+INFO: 2026-03-11 10:10:00.096465: Running `/usr/bin/clang --version`.
+
+INFO: 2026-03-11 10:10:00.114986: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -mmacos-version-min=12 -c /Users/robertguss/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/include/dart_api_dl.c -fpic -I src -o /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/include/dart_api_dl.c.o
+
+INFO: 2026-03-11 10:10:00.115363: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -mmacos-version-min=12 -c /Users/robertguss/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/objective_c.c -fpic -I src -o /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c.c.o
+
+INFO: 2026-03-11 10:10:00.115567: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -mmacos-version-min=12 -c /Users/robertguss/.pub-cache/hosted/pub.dev/objective_c-9.3.0/test/util.c -fpic -I src -o /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/test/util.c.o
+
+INFO: 2026-03-11 10:10:00.115697: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -mmacos-version-min=12 -x objective-c -fobjc-arc -c /Users/robertguss/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/input_stream_adapter.m -fpic -I src -o /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/input_stream_adapter.m.o
+
+INFO: 2026-03-11 10:10:00.116018: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -mmacos-version-min=12 -x objective-c -fobjc-arc -c /Users/robertguss/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/observer.m -fpic -I src -o /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/observer.m.o
+
+.m.o
+
+INFO: 2026-03-11 10:10:00.116118: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -mmacos-version-min=12 -x objective-c -fobjc-arc -c /Users/robertguss/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/ns_number.m -fpic -I src -o /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/ns_number.m.o
+
+INFO: 2026-03-11 10:10:00.116214: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -mmacos-version-min=12 -x objective-c -fobjc-arc -c /Users/robertguss/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/protocol.m -fpic -I src -o /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/protocol.m.o
+
+INFO: 2026-03-11 10:10:00.116395: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -mmacos-version-min=12 -x objective-c -fobjc-arc -c /Users/robertguss/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/objective_c_bindings_generated.m -fpic -I src -o /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c_bindings_generated.m.o
+
+INFO: 2026-03-11 10:10:00.152194: 
+INFO: 2026-03-11 10:10:00.152263: 
+INFO: 2026-03-11 10:10:00.152289: Generated /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/include/dart_api_dl.c.o
+
+INFO: 2026-03-11 10:10:00.153943: 
+INFO: 2026-03-11 10:10:00.153970: 
+INFO: 2026-03-11 10:10:00.153980: Generated /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c.c.o
+
+INFO: 2026-03-11 10:10:00.164415: 
+INFO: 2026-03-11 10:10:00.164442: 
+INFO: 2026-03-11 10:10:00.164452: Generated /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/test/util.c.o
+
+INFO: 2026-03-11 10:10:00.175889: 
+INFO: 2026-03-11 10:10:00.175899: 
+
+github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/observer.m.o
+
+ooks_runner/shared/objective_c/build/9fb02c5622/obj/src/protocol.m.o
+
+INFO: 2026-03-11 10:10:00.298470: 
+INFO: 2026-03-11 10:10:00.298505: 
+INFO: 2026-03-11 10:10:00.298517: Generated /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/ns_number.m.o
+
+INFO: 2026-03-11 10:10:00.299260: 
+INFO: 2026-03-11 10:10:00.299274: 
+INFO: 2026-03-11 10:10:00.299283: Generated /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c.m.o
+
+INFO: 2026-03-11 10:10:00.299940: Generated /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/input_stream_adapter.m.o
+
+INFO: 2026-03-11 10:10:00.318479: 
+INFO: 2026-03-11 10:10:00.318517: 
+INFO: 2026-03-11 10:10:00.318527: Generated /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c_bindings_generated.m.o
+
+INFO: 2026-03-11 10:10:00.318766: Running: /usr/bin/clang -shared -Wl,-encryptable -undefined dynamic_lookup -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -mmacos-version-min=12 /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/include/dart_api_dl.c.o /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c.c.o /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/test/util.c.o /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/input_stream_adapter.m.o /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c.m.o /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/observer.m.o /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/ns_number.m.o /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/protocol.m.o /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c_bindings_generated.m.o -o /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/objective_c.dylib
+
+INFO: 2026-03-11 10:10:00.354692: 
+INFO: 2026-03-11 10:10:00.354742: 
+INFO: 2026-03-11 10:10:00.354752: Generated /Users/robertguss/Projects/github/flutter-supabase-starter-kit/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/objective_c.dylib
+

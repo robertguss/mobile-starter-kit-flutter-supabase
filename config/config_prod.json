@@ -1,0 +1,14 @@
+{
+  "appFlavor": "production",
+  "appName": "Flutter Supabase Starter",
+  "supabaseUrl": "https://your-project-ref.supabase.co",
+  "supabaseAnonKey": "your-anon-key",
+  "supabaseRedirectUrl": "com.example.flutter_supabase_starter://login-callback",
+  "powerSyncUrl": "https://your-powersync-instance.powersync.com",
+  "sentryDsn": "https://examplePublicKey@o0.ingest.sentry.io/0",
+  "posthogApiKey": "phc_your_key",
+  "posthogHost": "https://us.i.posthog.com",
+  "revenueCatApplePublicSdkKey": "appl_your_public_key",
+  "revenueCatGooglePublicSdkKey": "goog_your_public_key",
+  "oneSignalAppId": "00000000-0000-0000-0000-000000000000"
+}
