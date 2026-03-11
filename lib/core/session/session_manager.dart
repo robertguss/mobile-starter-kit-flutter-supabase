@@ -1,3 +1,4 @@
+import 'package:flutter_supabase_starter/core/providers/database_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'session_manager.g.dart';
@@ -25,4 +26,7 @@ class SessionManager {
 }
 
 @Riverpod(keepAlive: true)
-SessionManager sessionManager(Ref ref) => SessionManager();
+SessionManager sessionManager(Ref ref) {
+  final database = ref.watch(powerSyncDatabaseProvider);
+  return SessionManager(onTeardown: database.disconnectAndClear);
+}

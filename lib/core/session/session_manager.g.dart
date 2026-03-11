@@ -48,4 +48,4 @@ final class SessionManagerProvider
   }
 }
 
-String _$sessionManagerHash() => r'f570fbc7f47e68c83fd9fdac6d0d719051c1de7e';
+String _$sessionManagerHash() => r'd069fa268bbe92147a861bab4e11333f02e6e01e';

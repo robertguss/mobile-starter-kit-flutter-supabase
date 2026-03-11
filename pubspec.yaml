@@ -18,6 +18,8 @@ dependencies:
   go_router: ^17.1.0
   intl: ^0.20.2
   onesignal_flutter: ^5.4.3
+  path: ^1.9.1
+  path_provider: ^2.1.5
   posthog_flutter: ^5.19.0
   powersync: ^1.18.0
   purchases_flutter: ^9.13.1
